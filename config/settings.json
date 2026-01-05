@@ -21,6 +21,49 @@
       ]
     },
     {
+      "name": "Governance",
+      "url": "#",
+      "children": [
+        { "name": "Governing Body", "url": "#" },
+        { "name": "Staff Council", "url": "#" },
+        { "name": "Staff Association", "url": "#" }
+      ]
+    },
+    {
+      "name": "Academics",
+      "url": "#",
+      "children": [
+        { "name": "Departments", "url": "#" },
+        { "name": "Academic Calendar", "url": "#" }
+      ]
+    },
+    {
+      "name": "Courses",
+      "url": "#",
+      "children": [
+        { "name": "UG Programe", "url": "#" },
+        { "name": "PG Programe", "url": "#" }
+      ]
+    },
+    {
+      "name": "IQAC",
+      "url": "#",
+      "children": [
+        { "name": "Objectives & Functions", "url": "#" },
+        { "name": "Composition", "url": "#" },
+        { "name": "Audit", "url": "#" },
+        { "name": "Reports", "url": "#" }
+      ]
+    },
+    {
+      "name": "Alumni",
+      "url": "#"
+    },
+    {
+      "name": "Events",
+      "url": "#"
+    },
+    {
       "name": "Department",
       "url": "#",
       "children": [
