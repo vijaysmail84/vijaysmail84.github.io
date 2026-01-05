@@ -8,16 +8,19 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <style id="dynamic-theme"></style>
     <style>
-      /* SSNC UI Layout */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         background: #f0f0f0;
       }
 
-      /* Top Branding Bar */
+      /* Top Branding */
       .top-header {
         background: #fff;
         padding: 10px 5%;
@@ -40,68 +43,86 @@
         font-weight: bold;
       }
 
-      .main-carousel {
-        width: 100%;
-        height: 400px; /* Standard height for college portals */
-        background: #000;
-        margin-bottom: 20px;
-      }
-
-      .main-carousel .swiper-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensures images don't look stretched */
-        opacity: 0.9;
-      }
-
-      /* SSNC Colors for Carousel Controls */
-      .swiper-button-next,
-      .swiper-button-prev {
-        color: var(--secondary) !important;
-      }
-
-      .swiper-pagination-bullet-active {
-        background: var(--secondary) !important;
-      }
-
-      /* Menu Bar */
+      /* Navigation Fix */
       nav {
-        background: var(
-          --primary
-        ); /* This will use the Royal Blue from your settings */
-        color: white;
-        padding: 0 5%;
-        height: 60px; /* Gives the menu a defined height like SSU */
+        background: var(--primary);
+        min-height: 50px;
         display: flex;
         align-items: center;
-        justify-content: center; /* Centers the menu links */
+        padding: 0 5%;
+        position: relative;
+        z-index: 1000;
       }
       .nav-links {
         list-style: none;
         display: flex;
         margin: 0;
         padding: 0;
-        overflow-x: auto;
+        width: 100%;
       }
-      .nav-links a {
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links li a {
         color: #ffffff !important;
         text-transform: uppercase;
         font-weight: 600;
-        padding: 20px 15px;
+        padding: 15px 20px;
         display: block;
         text-decoration: none;
+        font-size: 0.85rem;
+        white-space: nowrap;
         transition: 0.3s;
-      }
-      .nav-links a:hover {
-        background: var(--secondary); /* Golden color on hover */
-        color: var(--primary) !important; /* Blue text on gold background */
       }
       .nav-links li a:hover {
         background: var(--secondary);
-        color: var(--primary);
+        color: var(--primary) !important;
       }
 
-      /* Scrolling News (Red Bar) */
+      /* Dropdown CSS */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-top: 3px solid var(--secondary);
+      }
+      .dropdown-content a {
+        color: #333 !important;
+        padding: 12px 15px !important;
+        text-transform: none !important;
+        border-bottom: 1px solid #eee;
+      }
+      .nav-links li:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Carousel Fix */
+      .main-carousel {
+        width: 100%;
+        height: 400px;
+        background: #000;
+        overflow: hidden;
+        position: relative;
+      }
+      .main-carousel .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+      }
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: var(--secondary) !important;
+      }
+      .swiper-pagination-bullet-active {
+        background: var(--secondary) !important;
+      }
+
+      /* Ticker & Grid */
       .ticker-wrap {
         background: var(--tickerBg);
         color: white;
@@ -122,14 +143,12 @@
         }
       }
 
-      /* 3-Column Portal Grid */
       .portal-grid {
         display: grid;
         grid-template-columns: 250px 1fr 300px;
         gap: 20px;
         padding: 20px 5%;
       }
-
       .card {
         background: white;
         border: 1px solid #ddd;
@@ -144,7 +163,6 @@
         font-size: 1rem;
       }
 
-      /* Circular Icon Grid (SSNC Style) */
       .icon-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -199,6 +217,13 @@
       <div class="ticker" id="news-ticker"></div>
     </div>
 
+    <div class="swiper main-carousel">
+      <div class="swiper-wrapper" id="carousel-images"></div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
     <main class="portal-grid">
       <aside class="column">
         <div class="card">
@@ -211,7 +236,9 @@
           <p
             id="principal-excerpt"
             style="font-size: 0.85rem; line-height: 1.4"
-          ></p>
+          >
+            Welcome to Amer Maharaja P.G. College...
+          </p>
           <a href="#" style="color: var(--tickerBg); font-weight: bold"
             >Read More...</a
           >
@@ -233,27 +260,24 @@
       </aside>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      // Load Carousel Images
       async function loadCarousel() {
-        const carouselContainer = document.getElementById("carousel-images");
-
-        // For your prototype, we can use the links you provided or the GitHub API
-        // Replace these URLs with your actual GitHub assets path later
+        const container = document.getElementById("carousel-images");
         const photos = [
           "https://images.unsplash.com/photo-1562774053-701939374585?w=1200",
           "https://images.unsplash.com/photo-1523050335392-93851179ae22?w=1200",
           "https://images.unsplash.com/photo-1541339907198-e08759dfc3ef?w=1200",
         ];
 
-        photos.forEach((url) => {
-          carouselContainer.innerHTML += `
-            <div class="swiper-slide">
-                <img src="${url}" alt="College Campus">
-            </div>`;
-        });
+        container.innerHTML = photos
+          .map(
+            (url) => `
+                <div class="swiper-slide"><img src="${url}" alt="Campus"></div>
+            `
+          )
+          .join("");
 
-        // Initialize Swiper after images are added
         new Swiper(".main-carousel", {
           loop: true,
           autoplay: { delay: 4000 },
@@ -266,7 +290,6 @@
       }
 
       async function loadSSNCStyle() {
-        // 1. Fetch Master Settings (Theme & Nav)
         const settings = await (await fetch("config/settings.json")).json();
         document.getElementById("college-name").innerText =
           settings.collegeName;
@@ -277,35 +300,31 @@
                     --tickerBg: ${settings.theme.tickerBg || "#E31837"}; 
                 }`;
 
-        // 2. Build Menu
+        // Build Menu (Fixed Duplication)
         const menu = document.getElementById("main-menu");
+        menu.innerHTML = "";
         settings.navigation.forEach((item) => {
           if (item.children) {
-            // Logic for Menus with Sub-menus
-            let dropdownHtml = `
-                <li class="has-children">
-                    <a href="${item.url}">${item.name}</a>
-                    <div class="dropdown-content">
-                        ${item.children
-                          .map(
-                            (child) =>
-                              `<a href="${child.url}">${child.name}</a>`
-                          )
-                          .join("")}
-                    </div>
-                </li>`;
-            menu.innerHTML += dropdownHtml;
+            menu.innerHTML += `
+                        <li class="has-children">
+                            <a href="${item.url}">${
+              item.name
+            } <i class="fa fa-caret-down" style="font-size:0.7rem"></i></a>
+                            <div class="dropdown-content">
+                                ${item.children
+                                  .map(
+                                    (child) =>
+                                      `<a href="${child.url}">${child.name}</a>`
+                                  )
+                                  .join("")}
+                            </div>
+                        </li>`;
           } else {
-            // Normal Logic for Single Links
             menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
           }
         });
 
-        settings.navigation.forEach((item) => {
-          menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
-        });
-
-        // 3. Load News Ticker & Notice List
+        // Load Notices
         const notices = await (await fetch("config/notices.json")).json();
         document.getElementById("news-ticker").innerText = notices.join(" | ");
         const noticeList = document.getElementById("notice-list");
@@ -314,7 +333,7 @@
                     <i class="fas fa-caret-right" style="color:var(--tickerBg)"></i> ${n}</li>`;
         });
 
-        // 4. Load Quick Connect Icons
+        // Quick Connect
         const links = await (await fetch("config/links.json")).json();
         const iconGrid = document.getElementById("quick-connect-grid");
         links.forEach((link) => {
@@ -325,10 +344,8 @@
                     </a>`;
         });
 
-        // 5. Principal Photo
         document.getElementById("principal-photo").src =
           "assets/photos/principal/principal.jpg";
-
         loadCarousel();
       }
 

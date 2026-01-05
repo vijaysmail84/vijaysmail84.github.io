@@ -1,36 +1,23 @@
 {
-  "collegeName": "Amer Maharaja P.G. College",
-  "theme": {
-    "primary": "#002D62",
-    "secondary": "#D4AF37",
-    "tickerBg": "#E31837"
-  },
   "navigation": [
     { "name": "Home", "url": "index.html" },
-    { 
-      "name": "About", "url": "#", 
+    {
+      "name": "About",
+      "url": "#",
       "children": [
-        { "name": "Vision & Mission", "url": "vision.html" },
-        { "name": "Director's Message", "url": "director.html" },
-        { "name": "Principal's Message", "url": "principal.html" }
+        { "name": "Vision & Mission", "url": "content.html?id=vision" },
+        { "name": "Director's Message", "url": "content.html?id=director" },
+        { "name": "Principal's Message", "url": "content.html?id=principal" }
       ]
     },
-    { 
-      "name": "Department", "url": "#",
+    {
+      "name": "Department",
+      "url": "#",
       "children": [
-        { "name": "Arts", "url": "arts.html" },
-        { "name": "Science", "url": "science.html" },
-        { "name": "Commerce", "url": "commerce.html" }
+        { "name": "Arts", "url": "content.html?id=arts" },
+        { "name": "Science", "url": "content.html?id=science" },
+        { "name": "Commerce", "url": "content.html?id=commerce" }
       ]
-    },
-    { 
-      "name": "Infrastructure", "url": "#",
-      "children": [
-        { "name": "Sports", "url": "sports.html" },
-        { "name": "Library", "url": "library.html" },
-        { "name": "Labs", "url": "labs.html" }
-      ]
-    },
-    { "name": "Contact", "url": "contact.html" }
+    }
   ]
 }

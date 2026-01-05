@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Portal | Amer Maharaja</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style id="dynamic-theme"></style>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f4f4;
+      }
+      .top-header {
+        background: #fff;
+        padding: 10px 5%;
+        display: flex;
+        align-items: center;
+        border-bottom: 4px solid var(--primary);
+      }
+      .logo-box img {
+        height: 80px;
+        margin-right: 20px;
+      }
+      nav {
+        background: var(--primary);
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 0 5%;
+        position: relative;
+        z-index: 1000;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links li a {
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 15px 20px;
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-top: 3px solid var(--secondary);
+      }
+      .dropdown-content a {
+        color: #333 !important;
+        padding: 12px 15px !important;
+        text-transform: none !important;
+        border-bottom: 1px solid #eee;
+      }
+      .nav-links li:hover .dropdown-content {
+        display: block;
+      }
+
+      .content-card {
+        max-width: 1000px;
+        margin: 40px auto;
+        background: white;
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        min-height: 500px;
+      }
+      .content-card h1 {
+        color: var(--primary);
+        border-bottom: 3px solid var(--secondary);
+        padding-bottom: 15px;
+        margin-top: 0;
+      }
+      .page-text {
+        line-height: 1.8;
+        color: #333;
+        font-size: 1.05rem;
+      }
+      footer {
+        background: #222;
+        color: #fff;
+        text-align: center;
+        padding: 30px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="logo-box">
+        <img src="assets/photos/logo.png" alt="Logo" />
+      </div>
+      <div>
+        <h2 id="header-name" style="margin: 0">Amer Maharaja College</h2>
+      </div>
+    </div>
+    <nav><ul class="nav-links" id="main-menu"></ul></nav>
+
+    <main class="content-card">
+      <h1 id="dynamic-title">Loading Page...</h1>
+      <div id="dynamic-body" class="page-text">
+        Please wait while we fetch the content...
+      </div>
+    </main>
+
+    <footer>&copy; 2026 Amer Maharaja P.G. College</footer>
+
+    <script>
+      async function initPage() {
+        // 1. Get the 'id' from the URL (e.g., ?id=vision)
+        const params = new URLSearchParams(window.location.search);
+        const pageId = params.get("id") || "vision";
+
+        // 2. Load Settings (Theme & Nav)
+        const settings = await (await fetch("config/settings.json")).json();
+        document.getElementById("dynamic-theme").innerHTML = `
+                :root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; }`;
+
+        // Build Navigation Menu (Same logic as index.html)
+        const menu = document.getElementById("main-menu");
+        settings.navigation.forEach((item) => {
+          if (item.children) {
+            menu.innerHTML += `<li><a href="${item.url}">${
+              item.name
+            }</a><div class="dropdown-content">
+                        ${item.children
+                          .map((c) => `<a href="${c.url}">${c.name}</a>`)
+                          .join("")}</div></li>`;
+          } else {
+            menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
+          }
+        });
+
+        // 3. Load Dynamic Content from JSON
+        try {
+          const res = await fetch(`config/pages/${pageId}.json`);
+          if (!res.ok) throw new Error("Not found");
+          const data = await res.json();
+
+          document.title = `${data.title} | Amer Maharaja`;
+          document.getElementById("dynamic-title").innerText = data.title;
+          document.getElementById("dynamic-body").innerHTML = data.body;
+        } catch (e) {
+          document.getElementById("dynamic-title").innerText =
+            "Under Maintenance";
+          document.getElementById("dynamic-body").innerHTML =
+            "The requested information is currently being updated.";
+        }
+      }
+      initPage();
+    </script>
+  </body>
+</html>
