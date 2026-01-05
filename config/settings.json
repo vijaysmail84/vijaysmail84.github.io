@@ -1,16 +1,36 @@
 {
   "collegeName": "Amer Maharaja P.G. College",
-  "location": "Kunda, Amer",
   "theme": {
-    "primaryColor": "#002D62",
-    "secondaryColor": "#D4AF37",
-    "textColor": "#ffffff"
+    "primary": "#002D62",
+    "secondary": "#D4AF37",
+    "tickerBg": "#E31837"
   },
   "navigation": [
-    {"name": "Home", "link": "#home"},
-    {"name": "About Us", "link": "#about"},
-    {"name": "Departments", "link": "#departments"},
-    {"name": "Gallery", "link": "#gallery"},
-    {"name": "Contact", "link": "#contact"}
+    { "name": "Home", "url": "index.html" },
+    { 
+      "name": "About", "url": "#", 
+      "children": [
+        { "name": "Vision & Mission", "url": "vision.html" },
+        { "name": "Director's Message", "url": "director.html" },
+        { "name": "Principal's Message", "url": "principal.html" }
+      ]
+    },
+    { 
+      "name": "Department", "url": "#",
+      "children": [
+        { "name": "Arts", "url": "arts.html" },
+        { "name": "Science", "url": "science.html" },
+        { "name": "Commerce", "url": "commerce.html" }
+      ]
+    },
+    { 
+      "name": "Infrastructure", "url": "#",
+      "children": [
+        { "name": "Sports", "url": "sports.html" },
+        { "name": "Library", "url": "library.html" },
+        { "name": "Labs", "url": "labs.html" }
+      ]
+    },
+    { "name": "Contact", "url": "contact.html" }
   ]
 }
