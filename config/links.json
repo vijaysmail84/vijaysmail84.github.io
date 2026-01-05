@@ -1,8 +1,28 @@
 [
-  { "name": "Library", "icon": "fas fa-book", "url": "/library" },
-  { "name": "Placement", "icon": "fas fa-briefcase", "url": "/placement" },
-  { "name": "NSS", "icon": "fas fa-users", "url": "/nss" },
-  { "name": "Sports", "icon": "fas fa-running", "url": "/sports" },
-  { "name": "Webinars", "icon": "fas fa-laptop", "url": "/webinars" },
-  { "name": "E-Content", "icon": "fas fa-file-pdf", "url": "/e-content" }
+  {
+    "name": "Library",
+    "icon": "fas fa-book",
+    "url": "content.html?id=library"
+  },
+  {
+    "name": "Placement",
+    "icon": "fas fa-briefcase",
+    "url": "content.html?id=placement"
+  },
+  { "name": "NSS", "icon": "fas fa-users", "url": "content.html?id=nss" },
+  {
+    "name": "Sports",
+    "icon": "fas fa-running",
+    "url": "content.html?id=sports"
+  },
+  {
+    "name": "Webinars",
+    "icon": "fas fa-laptop",
+    "url": "content.html?id=webinars"
+  },
+  {
+    "name": "E-Content",
+    "icon": "fas fa-file-pdf",
+    "url": "content.html?id=e-content"
+  }
 ]

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amer Maharaja College | Portal</title>
+    <title>Amer Maharaja College | Home</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -12,16 +12,22 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-
     <style id="dynamic-theme"></style>
     <style>
+      :root {
+        --primary: #002d62;
+        --secondary: #d4af37;
+        --tickerBg: #e31837;
+      }
       body {
         font-family: Arial, sans-serif;
         margin: 0;
-        background: #f0f0f0;
+        background: #f4f4f4;
+        color: #333;
+        overflow-x: hidden;
       }
 
-      /* Branding */
+      /* HEADER & BRANDING */
       .top-header {
         background: #fff;
         padding: 10px 5%;
@@ -30,24 +36,40 @@
         border-bottom: 4px solid var(--primary);
       }
       .logo-box img {
-        height: 80px;
-        margin-right: 20px;
+        height: 75px;
+        margin-right: 15px;
       }
       .title-box h1 {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         color: var(--primary);
         margin: 0;
+        text-transform: uppercase;
+      }
+      .title-box p {
+        margin: 0;
+        color: var(--secondary);
+        font-weight: bold;
+        font-size: 0.9rem;
       }
 
-      /* Navigation Fixes */
+      /* NAVIGATION & MOBILE TOGGLE */
       nav {
         background: var(--primary);
-        min-height: 50px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         padding: 0 5%;
-        position: relative;
-        z-index: 1000;
+      }
+      .menu-toggle {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 15px;
+        font-weight: bold;
       }
       .nav-links {
         list-style: none;
@@ -58,66 +80,58 @@
       .nav-links li {
         position: relative;
       }
-      .nav-links li a {
+      .nav-links a {
         color: #ffffff !important;
-        text-decoration: none;
-        padding: 15px 20px;
+        padding: 18px 20px;
         display: block;
+        text-decoration: none;
         font-size: 0.85rem;
         font-weight: 600;
         text-transform: uppercase;
-        white-space: nowrap;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .has-children:hover > a {
+        background: var(--secondary);
+        color: var(--primary) !important;
       }
 
-      /* Dropdown Logic */
+      /* DROPDOWNS (Visibility Fix) */
       .dropdown-content {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
-        background: #fff;
-        min-width: 200px;
+        background: #ffffff;
+        min-width: 220px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        border-top: 3px solid var(--secondary);
       }
       .dropdown-content a {
         color: #333 !important;
         padding: 12px 15px !important;
         text-transform: none !important;
         border-bottom: 1px solid #eee;
+        font-weight: 500;
+      }
+      .dropdown-content a:hover {
+        background: #f1f1f1;
       }
       .nav-links li:hover .dropdown-content {
         display: block;
       }
-      .nav-links li:hover > a {
-        background: var(--secondary);
-        color: var(--primary) !important;
-      }
 
-      /* Carousel */
-      .main-carousel {
-        width: 100%;
-        height: 400px;
-        background: #000;
-        overflow: hidden;
-      }
-      .main-carousel .swiper-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* Ticker & Grid */
+      /* TICKER */
       .ticker-wrap {
         background: var(--tickerBg);
         color: white;
-        padding: 8px 0;
+        padding: 10px 0;
         overflow: hidden;
+        font-weight: bold;
       }
       .ticker {
         white-space: nowrap;
         display: inline-block;
-        animation: marquee 25s linear infinite;
+        animation: marquee 30s linear infinite;
       }
       @keyframes marquee {
         0% {
@@ -128,60 +142,167 @@
         }
       }
 
+      /* CAROUSEL */
+      .main-carousel {
+        width: 100%;
+        height: 400px;
+        background: #000;
+        position: relative;
+      }
+      .main-carousel .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* NOTICE BOARD (SSU STYLE) */
+      .notice-container {
+        height: 400px; /* Increased height to match principal image area */
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #ddd;
+        background: #fff;
+        margin-top: 10px;
+      }
+      .notice-scroll {
+        position: absolute;
+        width: 100%;
+        animation: scrollUp 20s linear infinite;
+      }
+      .notice-scroll:hover {
+        animation-play-state: paused;
+      }
+      @keyframes scrollUp {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: -120%;
+        }
+      }
+      .new-badge {
+        background: #ff0000;
+        color: white;
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 3px;
+        margin-left: 5px;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* LAYOUT GRID */
       .portal-grid {
         display: grid;
-        grid-template-columns: 250px 1fr 300px;
-        gap: 20px;
-        padding: 20px 5%;
+        grid-template-columns: 1fr 1fr 300px; /* Column 1 & 2 are now equal */
+        gap: 25px;
+        padding: 30px 5%;
       }
       .card {
         background: white;
         border: 1px solid #ddd;
-        padding: 15px;
+        padding: 0;
         border-radius: 4px;
-        margin-bottom: 20px;
+        overflow: hidden;
       }
       .card-header {
         background: var(--primary);
         color: white;
-        padding: 10px;
-        margin: -15px -15px 15px -15px;
+        padding: 12px;
         font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9rem;
       }
 
-      .icon-grid {
+      /* EVENTS & FOOTER */
+      .events-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 0 5%;
+      }
+      .event-card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 10px;
         text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
       }
-      .icon-circle {
-        width: 50px;
-        height: 50px;
-        background: #eee;
-        border-radius: 50%;
-        margin: 0 auto 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
+      .event-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
       }
-      .icon-item {
-        text-decoration: none;
-        color: var(--primary);
-        font-size: 0.7rem;
-        font-weight: bold;
+      .main-footer {
+        background: var(--primary);
+        color: white;
+        padding: 50px 5% 20px;
+        margin-top: 60px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 50px;
+      }
+      .footer-info h3 {
+        color: var(--secondary);
+        margin-bottom: 25px;
+      }
+      .social-links a {
+        color: white;
+        font-size: 1.6rem;
+        margin-right: 15px;
+        transition: 0.3s;
+      }
+      .social-links a:hover {
+        color: var(--secondary);
       }
 
+      /* MOBILE VIEW */
       @media (max-width: 900px) {
+        .menu-toggle {
+          display: block;
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background: var(--primary);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-links.active {
+          display: flex;
+        }
+        .dropdown-content {
+          position: static;
+          box-shadow: none;
+          background: #003a7a;
+          padding-left: 20px;
+        }
+        .dropdown-content a {
+          color: #fff !important;
+        }
         .portal-grid {
           grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .main-carousel {
+          height: 250px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="top-header">
+    <header class="top-header">
       <div class="logo-box">
         <img
           src="assets/photos/logo.png"
@@ -190,102 +311,211 @@
       </div>
       <div class="title-box">
         <h1 id="college-name">Loading...</h1>
-        <p style="margin: 0; color: var(--secondary); font-weight: bold">
-          Affiliated to University of Rajasthan
-        </p>
+        <p>Affiliated to University of Rajasthan</p>
       </div>
-    </div>
+    </header>
 
-    <nav><ul class="nav-links" id="main-menu"></ul></nav>
+    <nav>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i> MENU
+      </div>
+      <ul class="nav-links" id="main-menu"></ul>
+    </nav>
 
-    <div class="ticker-wrap"><div class="ticker" id="news-ticker"></div></div>
+    <div class="ticker-wrap"><div class="ticker" id="top-ticker"></div></div>
 
     <div class="swiper main-carousel">
       <div class="swiper-wrapper" id="carousel-images"></div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
     </div>
 
     <main class="portal-grid">
-      <aside class="column">
-        <div class="card">
-          <div class="card-header">Principal's Desk</div>
+      <aside class="card">
+        <div class="card-header">Principal's Desk</div>
+        <div style="padding: 15px; text-align: center">
           <img
-            id="principal-photo"
-            src="https://via.placeholder.com/250x300"
-            style="width: 100%"
+            src="assets/photos/principal/principal.jpg"
+            style="width: 100%; border-radius: 5px"
+            onerror="this.src='https://via.placeholder.com/250x300'"
           />
-          <p style="font-size: 0.85rem">
-            Welcome to Amer Maharaja P.G. College...
+          <p
+            style="
+              font-size: 0.85rem;
+              line-height: 1.5;
+              text-align: left;
+              margin-top: 10px;
+            "
+          >
+            Amer Maharaja P.G. College welcomes you to an environment of
+            academic excellence...
           </p>
           <a
             href="content.html?id=principal"
-            style="color: var(--tickerBg); font-weight: bold"
+            style="
+              color: var(--tickerBg);
+              font-weight: bold;
+              text-decoration: none;
+            "
             >Read More...</a
           >
         </div>
       </aside>
 
-      <section class="column">
-        <div class="card">
-          <div class="card-header">Announcements</div>
-          <ul id="notice-list" style="list-style: none; padding: 0"></ul>
+      <section class="card">
+        <div class="card-header">Latest Announcements</div>
+        <div class="notice-container">
+          <div class="notice-scroll" id="notice-board-list"></div>
         </div>
       </section>
 
-      <aside class="column">
-        <div class="card">
-          <div class="card-header">Quick Connect</div>
-          <div class="icon-grid" id="quick-connect-grid"></div>
-        </div>
+      <aside class="card">
+        <div class="card-header">Quick Connect</div>
+        <div
+          id="icon-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            text-align: center;
+          "
+        ></div>
       </aside>
     </main>
 
+    <h2 style="text-align: center; color: var(--primary); margin: 40px 0 20px">
+      Events & Media
+    </h2>
+    <div class="events-grid" id="events-container"></div>
+
+    <footer class="main-footer">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3 id="footer-name"></h3>
+          <p>
+            <i
+              class="fas fa-map-marker-alt"
+              style="color: var(--secondary); width: 25px"
+            ></i>
+            <span id="footer-addr"></span>
+          </p>
+          <p>
+            <i
+              class="fas fa-phone"
+              style="color: var(--secondary); width: 25px"
+            ></i>
+            <span id="footer-contact"></span>
+          </p>
+          <div class="social-links" id="social-icons"></div>
+        </div>
+        <div>
+          <iframe
+            id="footer-map"
+            width="100%"
+            height="250"
+            style="border: 0; border-radius: 10px"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+      <p
+        style="
+          text-align: center;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          margin-top: 40px;
+          padding-top: 20px;
+          font-size: 0.8rem;
+          opacity: 0.8;
+        "
+      >
+        © 2026 Amer Maharaja P.G. College. All Rights Reserved.
+      </p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+      function toggleMenu() {
+        document.querySelector(".nav-links").classList.toggle("active");
+      }
+
       async function init() {
         try {
-          const settings = await (await fetch("config/settings.json")).json();
+          const [settings, social, notices, links] = await Promise.all([
+            fetch("config/settings.json").then((r) => r.json()),
+            fetch("config/social.json").then((r) => r.json()),
+            fetch("config/notices.json").then((r) => r.json()),
+            fetch("config/links.json").then((r) => r.json()),
+          ]);
+
+          // Branding & Theme
           document.getElementById("college-name").innerText =
             settings.collegeName;
+          document.getElementById("footer-name").innerText =
+            settings.collegeName;
+          document.getElementById("footer-addr").innerText = settings.address;
+          document.getElementById(
+            "footer-contact"
+          ).innerText = `${settings.phone} | ${settings.email}`;
+          document.getElementById("footer-map").src = settings.mapEmbed;
           document.getElementById(
             "dynamic-theme"
           ).innerHTML = `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; --tickerBg: ${settings.theme.tickerBg}; }`;
 
-          // Build Menu
+          // Notices (isNew Logic)
+          const tickerText = notices
+            .filter((n) => n.isNew)
+            .map((n) => n.text)
+            .join(" | ");
+          document.getElementById("top-ticker").innerText =
+            tickerText || "Welcome to Amer Maharaja P.G. College";
+
+          const board = document.getElementById("notice-board-list");
+          notices.forEach((n) => {
+            board.innerHTML += `<div style="padding:15px; border-bottom:1px solid #eee; font-size:0.9rem;">
+                        <i class="fas fa-caret-right" style="color:var(--tickerBg)"></i> ${
+                          n.text
+                        } ${n.isNew ? '<span class="new-badge">NEW</span>' : ""}
+                    </div>`;
+          });
+
+          // Navigation
           const menu = document.getElementById("main-menu");
           settings.navigation.forEach((item) => {
             if (item.children) {
-              menu.innerHTML += `<li><a href="${item.url}">${
+              menu.innerHTML += `<li class="has-children">
+                            <a href="${item.url}">${
                 item.name
-              }</a><div class="dropdown-content">${item.children
-                .map((c) => `<a href="${c.url}">${c.name}</a>`)
-                .join("")}</div></li>`;
+              } <i class="fa fa-caret-down" style="font-size:0.7rem"></i></a>
+                            <div class="dropdown-content">${item.children
+                              .map((c) => `<a href="${c.url}">${c.name}</a>`)
+                              .join("")}</div>
+                        </li>`;
             } else {
               menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
             }
           });
 
-          // Notices
-          const notices = await (await fetch("config/notices.json")).json();
-          document.getElementById("news-ticker").innerText =
-            notices.join(" | ");
-          notices.forEach((n) => {
-            document.getElementById(
-              "notice-list"
-            ).innerHTML += `<li style="padding:10px 0; border-bottom:1px dashed #ccc; font-size:0.9rem;">▶ ${n}</li>`;
+          // Social & Quick Connect
+          const socialIcons = {
+            facebook: "fab fa-facebook",
+            twitter: "fab fa-twitter",
+            instagram: "fab fa-instagram",
+            youtube: "fab fa-youtube",
+          };
+          Object.keys(social).forEach((k) => {
+            if (social[k])
+              document.getElementById(
+                "social-icons"
+              ).innerHTML += `<a href="${social[k]}" target="_blank"><i class="${socialIcons[k]}"></i></a>`;
           });
-
-          // Icons
-          const links = await (await fetch("config/links.json")).json();
           links.forEach((l) => {
             document.getElementById(
-              "quick-connect-grid"
-            ).innerHTML += `<a href="${l.url}" class="icon-item"><div class="icon-circle"><i class="${l.icon}"></i></div>${l.name}</a>`;
+              "icon-grid"
+            ).innerHTML += `<a href="${l.url}" style="text-decoration:none; color:var(--primary); font-size:0.75rem;"><i class="${l.icon}" style="display:block; font-size:1.6rem; margin-bottom:8px; color:var(--primary);"></i>${l.name}</a>`;
           });
 
-          // Carousel
+          // Carousel & Events
           const photos = [
             "https://images.unsplash.com/photo-1562774053-701939374585?w=1200",
             "https://images.unsplash.com/photo-1523050335392-93851179ae22?w=1200",
@@ -295,15 +525,31 @@
             .join("");
           new Swiper(".main-carousel", {
             loop: true,
-            autoplay: { delay: 3000 },
-            pagination: { el: ".swiper-pagination" },
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+            autoplay: { delay: 4000 },
+            pagination: { el: ".swiper-pagination", clickable: true },
+          });
+
+          const events = [
+            {
+              t: "Independence Day Celebration",
+              i: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=500",
             },
+            {
+              t: "National Seminar on Science",
+              i: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500",
+            },
+            {
+              t: "Annual Sports Meet 2025",
+              i: "https://images.unsplash.com/photo-1526676023771-1be0044505f3?w=500",
+            },
+          ];
+          events.forEach((e) => {
+            document.getElementById(
+              "events-container"
+            ).innerHTML += `<div class="event-card"><img src="${e.i}"><p>${e.t}</p></div>`;
           });
         } catch (e) {
-          console.error("Load Error:", e);
+          console.error("Initialization failed:", e);
         }
       }
       init();
