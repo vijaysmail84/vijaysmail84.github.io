@@ -14,11 +14,15 @@
     />
     <style id="dynamic-theme"></style>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
       :root {
         --primary: #002d62;
         --secondary: #d4af37;
         --tickerBg: #e31837;
+        /* NEW: 3D Depth Variable */
+        --nav-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -27,34 +31,108 @@
         overflow-x: hidden;
       }
 
-      /* HEADER & BRANDING */
+      /* 1. HEADER: Added subtle shadow for 3D lift */
       .top-header {
-        background: #fff;
-        padding: 10px 5%;
-        display: flex;
-        align-items: center;
-        border-bottom: 4px solid var(--primary);
-      }
-      .logo-box img {
-        height: 75px;
-        margin-right: 15px;
-      }
-      .title-box h1 {
-        font-size: 1.7rem;
-        color: var(--primary);
-        margin: 0;
-        text-transform: uppercase;
-      }
-      .title-box p {
-        margin: 0;
-        color: var(--secondary);
-        font-weight: bold;
-        font-size: 0.9rem;
+        background: linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #f0f4f8 50%,
+          #e2e8f0 100%
+        ) !important;
+        padding: 10px 5% !important;
+        display: flex !important;
+        flex-direction: row !important; /* Force items into a horizontal line */
+        flex-wrap: nowrap !important; /* Prevent the title from going below the logo */
+        align-items: center !important;
+        gap: 15px; /* Reduced gap to save horizontal space */
+        border-bottom: 5px solid #8a6d3b;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 1001;
       }
 
-      /* NAVIGATION & MOBILE TOGGLE */
+      .logo-box img {
+        height: 85px !important;
+        /* filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.2)); */
+        transition: transform 0.3s ease;
+      }
+      .logo-box img:hover {
+        transform: scale(1.05); /* Interactive smart feel */
+      }
+
+      .title-box {
+        flex-grow: 1;
+        min-width: 0; /* Important fix for Flexbox text wrapping */
+        white-space: nowrap; /* Forces the text to stay on one line */
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+
+      .title-box h1 {
+        font-family: "Libre Baskerville", serif;
+        font-size: clamp(
+          1.2rem,
+          4vw,
+          2.1rem
+        ) !important; /* Smart font sizing: shrinks on small screens */
+        font-style: italic;
+        margin: 0px 0px 0px 0px !important;
+        letter-spacing: -0.5px;
+        padding-left: 10px;
+        /* Create the Gradient for the Shine */
+        background: linear-gradient(
+          to right,
+          #002d62 20%,
+          #0056b3 40%,
+          #ffffff 50%,
+          #0056b3 60%,
+          #002d62 80%
+        );
+        background-size: 200% auto; /* Stretch it to allow movement */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        /* The Shine Animation */
+        animation: shine 4s linear infinite;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* 2. Shine Keyframes */
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      .title-box {
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: default;
+        display: inline-block;
+      }
+
+      .title-box p {
+        font-family: "Libre Baskerville", serif;
+        margin: 2px 0 0 0 !important;
+        padding-left: 8px;
+        padding-top: 10px;
+        background: linear-gradient(
+          135deg,
+          #8a6d3b 0%,
+          #b38728 50%,
+          #8a6d3b 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+        display: inline-block;
+        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
+      }
+
+      /* 2. NAVIGATION: Added Gradient and 3D Shadow */
       nav {
-        background: var(--primary);
+        /* Subtle gradient for depth */
+        background: linear-gradient(to bottom, var(--primary), #001a3a);
         position: sticky;
         top: 0;
         z-index: 1000;
@@ -62,24 +140,22 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 5%;
+        /* This shadow creates the 3D 'floating' effect */
+        box-shadow: var(--nav-shadow);
       }
-      .menu-toggle {
-        display: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 15px;
-        font-weight: bold;
-      }
+
       .nav-links {
         list-style: none;
         display: flex;
         margin: 0;
         padding: 0;
       }
+
       .nav-links li {
         position: relative;
       }
+
+      /* 3. MENU LINKS: Added hover transition */
       .nav-links a {
         color: #fff !important;
         padding: 18px 20px;
@@ -88,12 +164,14 @@
         font-size: 0.85rem;
         font-weight: 600;
         text-transform: uppercase;
-        transition: 0.3s;
+        transition: all 0.3s ease;
       }
-      .nav-links a:hover,
-      .has-children:hover > a {
-        background: var(--secondary);
-        color: var(--primary) !important;
+
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--secondary) !important;
+        /* Lift text slightly on hover */
+        transform: translateY(-1px);
       }
 
       /* DROPDOWNS (Visibility Fix) */
@@ -122,17 +200,27 @@
 
       /* TICKER */
       .ticker-wrap {
-        background: var(--tickerBg);
+        background: linear-gradient(
+          90deg,
+          #e31837,
+          #b2132b
+        ) !important; /* Gradient for depth */
         color: white;
-        padding: 10px 0;
+        padding: 12px 0;
         overflow: hidden;
         font-weight: bold;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3),
+          0 4px 10px rgba(0, 0, 0, 0.1); /* 3D Inner shadow */
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
       }
+
       .ticker {
         white-space: nowrap;
         display: inline-block;
         animation: marquee 30s linear infinite;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Makes text pop */
       }
+
       @keyframes marquee {
         0% {
           transform: translateX(100%);
@@ -204,18 +292,30 @@
       }
       .card {
         background: white;
-        border: 1px solid #ddd;
-        padding: 0;
-        border-radius: 4px;
+        border: none !important; /* Remove flat borders */
+        border-radius: 15px !important;
         overflow: hidden;
+        /* This shadow creates the physical depth */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       }
+
+      /* Card Lift on Hover */
+      .card:hover {
+        transform: translateY(-10px); /* Moves card toward user */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Deepens shadow as it lifts */
+      }
+
       .card-header {
-        background: var(--primary);
+        background: linear-gradient(135deg, var(--primary), #003a7a) !important;
         color: white;
-        padding: 12px;
+        padding: 15px;
         font-weight: bold;
         text-transform: uppercase;
         font-size: 0.9rem;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Makes text pop */
+        border-bottom: 3px solid var(--secondary);
       }
 
       /* EVENTS & FOOTER */
@@ -290,7 +390,10 @@
           color: #fff !important;
         }
         .portal-grid {
-          grid-template-columns: 1fr;
+          display: grid;
+          grid-template-columns: 1fr 1fr 300px;
+          gap: 30px; /* Increased gap to let shadows breathe */
+          padding: 40px 5%;
         }
         .footer-grid {
           grid-template-columns: 1fr;
@@ -298,13 +401,28 @@
         .main-carousel {
           height: 250px;
         }
+        .swiper-pagination-bullet {
+          background: #fff !important;
+          opacity: 0.7;
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .swiper-pagination-bullet-active {
+          background: var(--secondary) !important;
+          width: 25px !important; /* Elongated active dot */
+          border-radius: 5px !important;
+        }
+
         .principal-box {
           width: 100%;
-          max-width: 250px; /* Limits how wide the photo can get */
-          margin: 0 auto 15px; /* Centers the photo */
-          border: 3px solid var(--secondary);
-          padding: 5px;
-          background: #fff;
+          max-width: 240px;
+          height: 280px;
+          margin: 10px auto 15px;
+          border: 5px solid #fff;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          background: #f9f9f9;
         }
 
         #principal-photo {
@@ -312,6 +430,40 @@
           height: 300px; /* Fixed height for a uniform look */
           object-fit: cover; /* Crops the photo to fit the box without stretching */
           display: block;
+        }
+
+        #icon-grid a {
+          background: #fff !important;
+          border-radius: 12px !important;
+          padding: 15px 5px !important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+          border: 1px solid #eee !important;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+          text-decoration: none !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        #icon-grid a:hover {
+          background: var(--secondary) !important;
+          transform: scale(1.1) translateY(-8px) !important; /* Higher pop */
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* This forces the Icon and Text inside to turn white on hover */
+        #icon-grid a:hover,
+        #icon-grid a:hover i,
+        #icon-grid a:hover span {
+          color: #fff !important;
+        }
+
+        #icon-grid a i {
+          font-size: 1.8rem !important;
+          margin-bottom: 8px !important;
+          color: var(--primary); /* Original icon color */
+          transition: color 0.3s ease !important;
         }
       }
     </style>
