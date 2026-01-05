@@ -81,7 +81,7 @@
         position: relative;
       }
       .nav-links a {
-        color: #ffffff !important;
+        color: #fff !important;
         padding: 18px 20px;
         display: block;
         text-decoration: none;
@@ -102,7 +102,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background: #ffffff;
+        background: #fff;
         min-width: 220px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       }
@@ -298,6 +298,21 @@
         .main-carousel {
           height: 250px;
         }
+        .principal-box {
+          width: 100%;
+          max-width: 250px; /* Limits how wide the photo can get */
+          margin: 0 auto 15px; /* Centers the photo */
+          border: 3px solid var(--secondary);
+          padding: 5px;
+          background: #fff;
+        }
+
+        #principal-photo {
+          width: 100%;
+          height: 300px; /* Fixed height for a uniform look */
+          object-fit: cover; /* Crops the photo to fit the box without stretching */
+          display: block;
+        }
       }
     </style>
   </head>
@@ -333,21 +348,23 @@
       <aside class="card">
         <div class="card-header">Principal's Desk</div>
         <div style="padding: 15px; text-align: center">
-          <img
-            src="assets/photos/principal/principal.jpg"
-            style="width: 100%; border-radius: 5px"
-            onerror="this.src='https://via.placeholder.com/250x300'"
-          />
-          <p
-            style="
-              font-size: 0.85rem;
-              line-height: 1.5;
-              text-align: left;
-              margin-top: 10px;
-            "
-          >
-            Amer Maharaja P.G. College welcomes you to an environment of
-            academic excellence...
+          <div class="principal-box">
+            <img
+              id="principal-photo"
+              src="assets/photos/principal/principal.png"
+              onerror="this.src='https://via.placeholder.com/250x300'"
+            />
+          </div>
+          <p style="font-size: 0.9rem; font-weight: bold; margin: 5px 0">
+            Dr. R.K. Gurjar
+          </p>
+          <p style="font-size: 0.85rem; line-height: 1.5; text-align: left">
+            Welcome to Amer Maharaja P.G. College, an institution dedicated to
+            academic excellence and the holistic development of our students. As
+            we navigate the academic session of 2026, our commitment to
+            nurturing responsible global citizens remains stronger than ever. We
+            believe that education is not merely the acquisition of knowledge
+            but a journey of self-discovery and empowerment.
           </p>
           <a
             href="content.html?id=principal"
@@ -499,7 +516,6 @@
           // Social & Quick Connect
           const socialIcons = {
             facebook: "fab fa-facebook",
-            twitter: "fab fa-twitter",
             instagram: "fab fa-instagram",
             youtube: "fab fa-youtube",
           };
