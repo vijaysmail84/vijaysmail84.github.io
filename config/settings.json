@@ -1,0 +1,16 @@
+{
+  "collegeName": "Amer Maharaja P.G. College",
+  "location": "Kunda, Amer",
+  "theme": {
+    "primaryColor": "#002D62",
+    "secondaryColor": "#D4AF37",
+    "textColor": "#ffffff"
+  },
+  "navigation": [
+    {"name": "Home", "link": "#home"},
+    {"name": "About Us", "link": "#about"},
+    {"name": "Departments", "link": "#departments"},
+    {"name": "Gallery", "link": "#gallery"},
+    {"name": "Contact", "link": "#contact"}
+  ]
+}

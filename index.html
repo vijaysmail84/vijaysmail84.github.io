@@ -1,259 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amer Maharaja P.G. College | Kunda, Amer</title>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amer Maharaja College | Portal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style id="dynamic-theme"></style>
     <style>
-        :root {
-            --primary: #002D62; /* Deep Academic Blue */
-            --secondary: #D4AF37; /* Royal Gold */
-            --accent: #E31837; /* Academic Red for Alerts/News */
-            --light: #F8F9FA;
-            --white: #ffffff;
-        }
+      /* SSNC UI Layout */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f0f0f0;
+      }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--light); color: #333; overflow-x: hidden; }
+      /* Top Branding Bar */
+      .top-header {
+        background: #fff;
+        padding: 10px 5%;
+        display: flex;
+        align-items: center;
+        border-bottom: 4px solid var(--primary);
+      }
+      .logo-box img {
+        height: 80px;
+        margin-right: 20px;
+      }
+      .title-box h1 {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin: 0;
+      }
+      .title-box p {
+        margin: 0;
+        color: var(--secondary);
+        font-weight: bold;
+      }
 
-        /* --- Animated Navigation --- */
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 8%; background: var(--white); position: fixed;
-            width: 100%; top: 0; z-index: 1000; transition: 0.4s ease;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        }
-        nav.sticky { padding: 12px 8%; background: rgba(255,255,255,0.98); }
-        
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-text h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary); line-height: 1; }
-        .logo-text p { font-size: 0.7rem; letter-spacing: 2px; color: var(--secondary); text-transform: uppercase; }
+      /* Menu Bar */
+      nav {
+        background: var(--primary);
+        color: white;
+        padding: 0 5%;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        overflow-x: auto;
+      }
+      .nav-links li a {
+        color: white;
+        padding: 15px 20px;
+        display: block;
+        text-decoration: none;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+      }
+      .nav-links li a:hover {
+        background: var(--secondary);
+        color: var(--primary);
+      }
 
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { 
-            text-decoration: none; color: var(--primary); font-weight: 600; 
-            font-size: 0.95rem; transition: 0.3s; position: relative;
+      /* Scrolling News (Red Bar) */
+      .ticker-wrap {
+        background: var(--tickerBg);
+        color: white;
+        padding: 8px 0;
+        overflow: hidden;
+      }
+      .ticker {
+        white-space: nowrap;
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(100%);
         }
-        .nav-links a::after {
-            content: ''; width: 0; height: 2px; background: var(--secondary);
-            position: absolute; bottom: -5px; left: 0; transition: 0.3s;
+        100% {
+          transform: translateX(-100%);
         }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--secondary); }
+      }
 
-        /* --- Hero Section (Carousel) --- */
-        .swiper { width: 100%; height: 90vh; margin-top: 0; }
-        .swiper-slide { position: relative; }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
-        
-        .hero-content {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; color: white; width: 80%;
-        }
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
-        .btn-main {
-            padding: 15px 40px; background: var(--secondary); color: var(--primary);
-            text-decoration: none; font-weight: 700; border-radius: 50px;
-            transition: 0.3s; border: 2px solid var(--secondary);
-        }
-        .btn-main:hover { background: transparent; color: var(--white); }
+      /* 3-Column Portal Grid */
+      .portal-grid {
+        display: grid;
+        grid-template-columns: 250px 1fr 300px;
+        gap: 20px;
+        padding: 20px 5%;
+      }
 
-        /* --- Info Bar --- */
-        .info-bar { 
-            background: var(--primary); color: white; padding: 15px 8%; 
-            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;
+      .card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 4px;
+      }
+      .card-header {
+        background: var(--primary);
+        color: white;
+        padding: 10px;
+        margin: -15px -15px 15px -15px;
+        font-size: 1rem;
+      }
+
+      /* Circular Icon Grid (SSNC Style) */
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 20px;
+        text-align: center;
+      }
+      .icon-item {
+        text-decoration: none;
+        color: var(--primary);
+        font-size: 0.7rem;
+        font-weight: bold;
+      }
+      .icon-circle {
+        width: 50px;
+        height: 50px;
+        background: #eee;
+        border-radius: 50%;
+        margin: 0 auto 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        transition: 0.3s;
+      }
+      .icon-item:hover .icon-circle {
+        background: var(--secondary);
+        color: white;
+      }
+
+      @media (max-width: 900px) {
+        .portal-grid {
+          grid-template-columns: 1fr;
         }
-        .info-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
-
-        /* --- Sections --- */
-        section { padding: 100px 10%; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--primary); }
-        .section-header .line { width: 80px; height: 4px; background: var(--secondary); margin: 15px auto; }
-
-        /* --- Academics Grid --- */
-        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .course-card { 
-            background: var(--white); padding: 40px; border-radius: 20px; 
-            text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            transition: 0.4s; border-top: 5px solid transparent;
-        }
-        .course-card:hover { transform: translateY(-15px); border-top: 5px solid var(--secondary); }
-        .course-card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        .course-card h3 { margin-bottom: 15px; color: var(--primary); }
-
-        /* --- Footer --- */
-        footer { background: #0b1a2a; color: white; padding: 80px 10% 30px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 50px; }
-        .footer-col h4 { color: var(--secondary); margin-bottom: 25px; font-size: 1.2rem; }
-        .footer-col p, .footer-col li { font-size: 0.9rem; color: #cbd5e0; line-height: 1.8; margin-bottom: 10px; }
-        .footer-bottom { border-top: 1px solid #2d3748; padding-top: 30px; text-align: center; font-size: 0.8rem; color: #a0aec0; }
-
-        /* Responsive Mobile Menu */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-content h1 { font-size: 2.2rem; }
-        }
+      }
     </style>
-</head>
-<body>
-
-    <nav id="navbar">
-        <div class="logo-container">
-            <div class="logo-text">
-                <h2>AMER MAHARAJA</h2>
-                <p>P.G. College, Kunda</p>
-            </div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#academics">Courses</a></li>
-            <li><a href="#admission">Admission</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
-    </nav>
-
-    <div class="swiper mySwiper" id="home">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08759dfc3ef?auto=format&fit=crop&w=1600" alt="Amer Maharaja Campus">
-                <div class="hero-content">
-                    <h1 data-aos="zoom-out">Shape Your Destiny</h1>
-                    <p data-aos="fade-up" data-aos-delay="300">Affiliated with University of Rajasthan. Excellence in Education since 2006.</p>
-                    <a href="#admission" class="btn-main" data-aos="fade-up" data-aos-delay="500">Apply Now 2026-27</a>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?auto=format&fit=crop&w=1600" alt="College Students">
-                <div class="hero-content">
-                    <h1>A Legacy of Leaders</h1>
-                    <p>Modern Labs, Vast Library, and Expert Faculty in the heart of Amer.</p>
-                    <a href="#academics" class="btn-main">Explore Programs</a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-button-next" style="color: white;"></div>
-        <div class="swiper-button-prev" style="color: white;"></div>
-        <div class="swiper-pagination"></div>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="logo-box">
+        <img id="college-logo" src="assets/photos/logo.png" alt="Logo" />
+      </div>
+      <div class="title-box">
+        <h1 id="college-name">COLLEGE NAME</h1>
+        <p id="college-subtext">University of Rajasthan</p>
+      </div>
     </div>
 
-    <div class="info-bar">
-        <div class="info-item"><i class="fas fa-map-marker-alt"></i> Kunda, Amer, Jaipur, Rajasthan</div>
-        <div class="info-item"><i class="fas fa-phone-alt"></i> +91 98875 43410</div>
-        <div class="info-item"><i class="fas fa-envelope"></i> info@amermaharaja.ac.in</div>
+    <nav><ul class="nav-links" id="main-menu"></ul></nav>
+
+    <div class="ticker-wrap">
+      <div class="ticker" id="news-ticker"></div>
     </div>
 
-    <section id="about">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Welcome to Amer Maharaja</h2>
-            <div class="line"></div>
+    <main class="portal-grid">
+      <aside class="column">
+        <div class="card">
+          <div class="card-header">Principal's Desk</div>
+          <img
+            id="principal-photo"
+            src=""
+            style="width: 100%; border-radius: 2px"
+          />
+          <p
+            id="principal-excerpt"
+            style="font-size: 0.85rem; line-height: 1.4"
+          ></p>
+          <a href="#" style="color: var(--tickerBg); font-weight: bold"
+            >Read More...</a
+          >
         </div>
-        <div style="display: flex; gap: 60px; align-items: center; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 320px;" data-aos="fade-right">
-                <h3 style="color: var(--primary); margin-bottom: 20px;">Empowering Minds in a Royal Setting</h3>
-                <p style="margin-bottom: 20px; line-height: 1.8;">Amer Maharaja P.G. College, located near the majestic Aravali hills of Kunda, Amer, is a premier institution dedicated to academic brilliance. Our campus offers a self-contained environment conducive to deep learning and personal growth.</p>
-                <p style="margin-bottom: 20px; line-height: 1.8;">With over 12 specialized courses across 6 degrees, we cater to more than 1,300 students, maintaining a favorable student-teacher ratio to ensure individual attention.</p>
-                <ul style="list-style: none; color: var(--primary); font-weight: 600;">
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> University of Rajasthan Affiliation</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> Modern Computer & Science Labs</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> Advanced Personality Development</li>
-                </ul>
-            </div>
-            <div style="flex: 1; min-width: 320px; position: relative;" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1498243639351-a6c9af99aef0?auto=format&fit=crop&w=800" style="width: 100%; border-radius: 30px; box-shadow: 20px 20px 0 var(--secondary);" alt="College Interior">
-            </div>
-        </div>
-    </section>
+      </aside>
 
-    <section id="academics" style="background: #f0f4f8;">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Academic Departments</h2>
-            <div class="line"></div>
-            <p>Our curriculum is designed to meet the competitive standards of 2026.</p>
+      <section class="column">
+        <div class="card" style="min-height: 400px">
+          <div class="card-header">Announcements / Notices</div>
+          <ul id="notice-list" style="list-style: none; padding: 0"></ul>
         </div>
-        <div class="course-grid">
-            <div class="course-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-microscope"></i>
-                <h3>Science (B.Sc / M.Sc)</h3>
-                <p>Physics, Chemistry, Botany, Zoology, and Mathematics with hands-on research.</p>
-            </div>
-            <div class="course-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-palette"></i>
-                <h3>Arts (B.A / M.A)</h3>
-                <p>Focusing on History, Political Science, Hindi, and Sociology for holistic growth.</p>
-            </div>
-            <div class="course-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-calculator"></i>
-                <h3>Commerce (B.Com)</h3>
-                <p>In-depth Accountancy, Business Administration, and Economic Finance studies.</p>
-            </div>
-            <div class="course-card" data-aos="fade-up" data-aos-delay="400">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Computer (BCA)</h3>
-                <p>Preparing students for the IT revolution with modern programming and AI modules.</p>
-            </div>
-        </div>
-    </section>
+      </section>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4 class="logo-text" style="color: white;">AMER MAHARAJA</h4>
-                <p>A leading private institution in Jaipur-Rajasthan providing excellence in higher education since 2006.</p>
-                <div style="display: flex; gap: 15px; margin-top: 20px; font-size: 1.2rem;">
-                    <i class="fab fa-facebook-f"></i> <i class="fab fa-instagram"></i> <i class="fab fa-twitter"></i>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Useful Links</h4>
-                <ul style="list-style: none;">
-                    <li>Online Admission</li>
-                    <li>University Exams</li>
-                    <li>Student Gallery</li>
-                    <li>NSS Camps</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Us</h4>
-                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> NH-11 Highway, Kunda, Amer, Jaipur 302028</p>
-                <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +91 98875 43410</p>
-                <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> marudhara2003@yahoo.co.in</p>
-            </div>
+      <aside class="column">
+        <div class="card">
+          <div class="card-header">Quick Connect</div>
+          <div class="icon-grid" id="quick-connect-grid"></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Amer Maharaja P.G. College. All Rights Reserved. | Hosted on Azure Blob Storage</p>
-        </div>
-    </footer>
+      </aside>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Init Scroll Animations
-        AOS.init({ duration: 1000, once: true, offset: 120 });
+      async function loadSSNCStyle() {
+        // 1. Fetch Master Settings (Theme & Nav)
+        const settings = await (await fetch("config/settings.json")).json();
+        document.getElementById("college-name").innerText =
+          settings.collegeName;
+        document.getElementById("dynamic-theme").innerHTML = `
+                :root { 
+                    --primary: ${settings.theme.primary}; 
+                    --secondary: ${settings.theme.secondary}; 
+                    --tickerBg: ${settings.theme.tickerBg || "#E31837"}; 
+                }`;
 
-        // Init Carousel
-        var swiper = new Swiper(".mySwiper", {
-            effect: "fade",
-            loop: true,
-            autoplay: { delay: 5000 },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        // 2. Build Menu
+        const menu = document.getElementById("main-menu");
+        settings.navigation.forEach((item) => {
+          menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
         });
 
-        // Sticky Navbar Shadow
-        window.addEventListener("scroll", () => {
-            const nav = document.querySelector("nav");
-            nav.classList.toggle("sticky", window.scrollY > 50);
+        // 3. Load News Ticker & Notice List
+        const notices = await (await fetch("config/notices.json")).json();
+        document.getElementById("news-ticker").innerText = notices.join(" | ");
+        const noticeList = document.getElementById("notice-list");
+        notices.forEach((n) => {
+          noticeList.innerHTML += `<li style="padding: 10px 0; border-bottom: 1px dashed #ccc; font-size: 0.9rem;">
+                    <i class="fas fa-caret-right" style="color:var(--tickerBg)"></i> ${n}</li>`;
         });
+
+        // 4. Load Quick Connect Icons
+        const links = await (await fetch("config/links.json")).json();
+        const iconGrid = document.getElementById("quick-connect-grid");
+        links.forEach((link) => {
+          iconGrid.innerHTML += `
+                    <a href="${link.url}" class="icon-item">
+                        <div class="icon-circle"><i class="${link.icon}"></i></div>
+                        <div>${link.name}</div>
+                    </a>`;
+        });
+
+        // 5. Principal Photo
+        document.getElementById("principal-photo").src =
+          "assets/photos/principal/principal.jpg";
+      }
+
+      loadSSNCStyle();
     </script>
-</body>
+  </body>
 </html>

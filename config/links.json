@@ -1,0 +1,8 @@
+[
+  { "name": "Library", "icon": "fas fa-book", "url": "/library" },
+  { "name": "Placement", "icon": "fas fa-briefcase", "url": "/placement" },
+  { "name": "NSS", "icon": "fas fa-users", "url": "/nss" },
+  { "name": "Sports", "icon": "fas fa-running", "url": "/sports" },
+  { "name": "Webinars", "icon": "fas fa-laptop", "url": "/webinars" },
+  { "name": "E-Content", "icon": "fas fa-file-pdf", "url": "/e-content" }
+]
