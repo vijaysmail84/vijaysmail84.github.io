@@ -10,109 +10,233 @@
     />
     <style id="dynamic-theme"></style>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+
       :root {
         --primary: #002d62;
         --secondary: #d4af37;
+        --nav-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
-        background: #f8f9fa;
+        background: #f4f4f4;
         color: #333;
-      }
-      .top-header {
-        background: #fff;
-        padding: 10px 5%;
-        display: flex;
-        align-items: center;
-        border-bottom: 4px solid var(--primary);
-      }
-      .logo-box img {
-        height: 70px;
-        margin-right: 15px;
-      }
-      .title-box h1 {
-        font-size: 1.6rem;
-        color: var(--primary);
-        margin: 0;
+        overflow-x: hidden;
       }
 
+      /* 1. HEADER (Synced Shine & Alignment) */
+      .top-header {
+        background: linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #f0f4f8 50%,
+          #e2e8f0 100%
+        ) !important;
+        padding: 10px 5% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        gap: 25px;
+        border-bottom: 5px solid #8a6d3b;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 1001;
+      }
+
+      .logo-box img {
+        height: 75px !important;
+      }
+
+      .title-box {
+        flex-grow: 1;
+        white-space: nowrap;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .title-box h1 {
+        font-family: "Libre Baskerville", serif;
+        font-size: clamp(1.1rem, 3vw, 1.8rem) !important;
+        font-style: italic;
+        margin: 0 !important;
+        background: linear-gradient(
+          to right,
+          #002d62 20%,
+          #004a99 40%,
+          #ffffff 50%,
+          #004a99 60%,
+          #002d62 80%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 4s linear infinite;
+      }
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      .title-box p {
+        font-family: "Libre Baskerville", serif;
+        margin: 0 !important;
+        background: linear-gradient(
+          135deg,
+          #8a6d3b 0%,
+          #b38728 50%,
+          #8a6d3b 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700 !important;
+        font-size: 0.9rem !important;
+      }
+
+      /* 2. NAVIGATION (Centered for Desktop) */
       nav {
-        background: var(--primary);
-        display: flex;
-        align-items: center;
-        padding: 0 5%;
+        /* Subtle gradient for depth */
+        background: linear-gradient(to bottom, var(--primary), #001a3a);
         position: sticky;
         top: 0;
         z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        /* This shadow creates the 3D 'floating' effect */
+        box-shadow: var(--nav-shadow);
       }
+
+      .menu-toggle {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 15px;
+        width: 100%;
+        text-align: left;
+      }
+
       .nav-links {
         list-style: none;
         display: flex;
         margin: 0;
         padding: 0;
       }
+
       .nav-links li {
         position: relative;
       }
+
       .nav-links a {
         color: #fff !important;
         padding: 18px 20px;
         display: block;
         text-decoration: none;
         font-size: 0.85rem;
-        font-weight: bold;
+        font-weight: 600;
         text-transform: uppercase;
+        transition: all 0.3s ease;
       }
+
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--secondary) !important;
+        /* Lift text slightly on hover */
+        transform: translateY(-1px);
+      }
+
+      /* 3. DROPDOWNS */
       .dropdown-content {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         background: #fff;
-        min-width: 200px;
+        min-width: 220px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
       }
+
       .dropdown-content a {
         color: #333 !important;
         padding: 12px 15px !important;
         text-transform: none !important;
         border-bottom: 1px solid #eee;
       }
+
       .nav-links li:hover .dropdown-content {
         display: block;
       }
-      .nav-links li:hover > a {
-        background: var(--secondary);
-        color: var(--primary) !important;
-      }
 
+      /* 4. CONTENT CARD */
       .content-card {
         max-width: 1000px;
         margin: 40px auto;
         background: #fff;
-        padding: 50px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         min-height: 500px;
       }
+
       .content-card h1 {
         color: var(--primary);
         border-bottom: 3px solid var(--secondary);
         padding-bottom: 15px;
         margin-top: 0;
       }
-      .page-body {
-        line-height: 1.8;
-        color: #444;
-        font-size: 1.05rem;
-      }
-      .main-footer {
-        background: var(--primary);
-        color: white;
-        padding: 40px 5%;
-        text-align: center;
-        margin-top: 60px;
+
+      /* 5. MOBILE VIEW FIX (Full Width Drawer) */
+      @media (max-width: 900px) {
+        .top-header {
+          flex-direction: column !important;
+          text-align: center;
+        }
+        nav {
+          justify-content: flex-end;
+          padding: 0;
+        }
+        .menu-toggle {
+          display: block !important;
+        }
+
+        .nav-links {
+          display: none !important;
+          flex-direction: column !important;
+          width: 100%;
+          background: var(--primary);
+          position: absolute;
+          top: 100%;
+          left: 0;
+        }
+
+        .nav-links.active {
+          display: flex !important;
+        }
+        .nav-links li {
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content {
+          position: static !important;
+          display: block !important;
+          background: rgba(0, 0, 0, 0.15) !important;
+          box-shadow: none;
+          padding-left: 15px;
+        }
+
+        .dropdown-content a {
+          color: #ccc !important;
+        }
+        .content-card {
+          margin: 20px 5%;
+          padding: 20px;
+        }
       }
     </style>
   </head>
@@ -126,24 +250,38 @@
       </div>
       <div class="title-box">
         <h1 id="college-name">Amer Maharaja College</h1>
-        <p style="margin: 0; color: var(--secondary); font-weight: bold">
-          Affiliated to University of Rajasthan
-        </p>
+        <p>Affiliated to University of Rajasthan</p>
       </div>
     </header>
 
-    <nav><ul class="nav-links" id="main-menu"></ul></nav>
+    <nav>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i> MENU
+      </div>
+      <ul class="nav-links" id="main-menu"></ul>
+    </nav>
 
     <main class="content-card">
       <h1 id="page-title">Loading...</h1>
       <div id="page-body" class="page-body">Please wait...</div>
     </main>
 
-    <footer class="main-footer">
+    <footer
+      style="
+        background: var(--primary);
+        color: #fff;
+        padding: 40px 5%;
+        text-align: center;
+      "
+    >
       © 2026 Amer Maharaja P.G. College. All Rights Reserved.
     </footer>
 
     <script>
+      function toggleMenu() {
+        document.querySelector(".nav-links").classList.toggle("active");
+      }
+
       async function loadContent() {
         const params = new URLSearchParams(window.location.search);
         const pageId = params.get("id") || "vision";
@@ -159,11 +297,14 @@
           const menu = document.getElementById("main-menu");
           settings.navigation.forEach((item) => {
             if (item.children) {
-              menu.innerHTML += `<li><a href="${item.url}">${
+              menu.innerHTML += `<li>
+                <a href="${item.url}">${
                 item.name
-              }</a><div class="dropdown-content">${item.children
-                .map((c) => `<a href="${c.url}">${c.name}</a>`)
-                .join("")}</div></li>`;
+              } <i class="fa fa-caret-down" style="font-size:0.7rem"></i></a>
+                <div class="dropdown-content">${item.children
+                  .map((c) => `<a href="${c.url}">${c.name}</a>`)
+                  .join("")}</div>
+              </li>`;
             } else {
               menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
             }
