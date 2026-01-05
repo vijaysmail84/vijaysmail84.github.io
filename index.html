@@ -67,7 +67,6 @@
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
-
       .title-box h1 {
         font-family: "Libre Baskerville", serif;
         font-size: clamp(
@@ -685,8 +684,13 @@
 
           // Carousel & Events
           const photos = [
-            "https://images.unsplash.com/photo-1562774053-701939374585?w=1200",
-            "https://images.unsplash.com/photo-1523050335392-93851179ae22?w=1200",
+            "assets/photos/campus/campus-1.jpg",
+            "assets/photos/campus/campus-2.jpg",
+            "assets/photos/campus/campus-3.jpg",
+            "assets/photos/campus/campus-4.jpg",
+            "assets/photos/campus/campus-5.jpg",
+            "assets/photos/campus/campus-6.jpg",
+            "assets/photos/campus/campus-7.jpg",
           ];
           document.getElementById("carousel-images").innerHTML = photos
             .map((p) => `<div class="swiper-slide"><img src="${p}"></div>`)
