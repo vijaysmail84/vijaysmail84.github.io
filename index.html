@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
     <style id="dynamic-theme"></style>
     <style>
       body {
@@ -20,7 +21,7 @@
         background: #f0f0f0;
       }
 
-      /* Top Branding */
+      /* Branding */
       .top-header {
         background: #fff;
         padding: 10px 5%;
@@ -37,13 +38,8 @@
         color: var(--primary);
         margin: 0;
       }
-      .title-box p {
-        margin: 0;
-        color: var(--secondary);
-        font-weight: bold;
-      }
 
-      /* Navigation Fix */
+      /* Navigation Fixes */
       nav {
         background: var(--primary);
         min-height: 50px;
@@ -58,28 +54,22 @@
         display: flex;
         margin: 0;
         padding: 0;
-        width: 100%;
       }
       .nav-links li {
         position: relative;
       }
       .nav-links li a {
         color: #ffffff !important;
-        text-transform: uppercase;
-        font-weight: 600;
+        text-decoration: none;
         padding: 15px 20px;
         display: block;
-        text-decoration: none;
         font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
         white-space: nowrap;
-        transition: 0.3s;
-      }
-      .nav-links li a:hover {
-        background: var(--secondary);
-        color: var(--primary) !important;
       }
 
-      /* Dropdown CSS */
+      /* Dropdown Logic */
       .dropdown-content {
         display: none;
         position: absolute;
@@ -99,27 +89,22 @@
       .nav-links li:hover .dropdown-content {
         display: block;
       }
+      .nav-links li:hover > a {
+        background: var(--secondary);
+        color: var(--primary) !important;
+      }
 
-      /* Carousel Fix */
+      /* Carousel */
       .main-carousel {
         width: 100%;
         height: 400px;
         background: #000;
         overflow: hidden;
-        position: relative;
       }
       .main-carousel .swiper-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.9;
-      }
-      .swiper-button-next,
-      .swiper-button-prev {
-        color: var(--secondary) !important;
-      }
-      .swiper-pagination-bullet-active {
-        background: var(--secondary) !important;
       }
 
       /* Ticker & Grid */
@@ -154,27 +139,21 @@
         border: 1px solid #ddd;
         padding: 15px;
         border-radius: 4px;
+        margin-bottom: 20px;
       }
       .card-header {
         background: var(--primary);
         color: white;
         padding: 10px;
         margin: -15px -15px 15px -15px;
-        font-size: 1rem;
+        font-weight: bold;
       }
 
       .icon-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-        margin-top: 20px;
         text-align: center;
-      }
-      .icon-item {
-        text-decoration: none;
-        color: var(--primary);
-        font-size: 0.7rem;
-        font-weight: bold;
       }
       .icon-circle {
         width: 50px;
@@ -186,11 +165,12 @@
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
-        transition: 0.3s;
       }
-      .icon-item:hover .icon-circle {
-        background: var(--secondary);
-        color: white;
+      .icon-item {
+        text-decoration: none;
+        color: var(--primary);
+        font-size: 0.7rem;
+        font-weight: bold;
       }
 
       @media (max-width: 900px) {
@@ -203,19 +183,22 @@
   <body>
     <div class="top-header">
       <div class="logo-box">
-        <img id="college-logo" src="assets/photos/logo.png" alt="Logo" />
+        <img
+          src="assets/photos/logo.png"
+          onerror="this.src='https://via.placeholder.com/80'"
+        />
       </div>
       <div class="title-box">
-        <h1 id="college-name">COLLEGE NAME</h1>
-        <p id="college-subtext">Affiliated to University of Rajasthan</p>
+        <h1 id="college-name">Loading...</h1>
+        <p style="margin: 0; color: var(--secondary); font-weight: bold">
+          Affiliated to University of Rajasthan
+        </p>
       </div>
     </div>
 
     <nav><ul class="nav-links" id="main-menu"></ul></nav>
 
-    <div class="ticker-wrap">
-      <div class="ticker" id="news-ticker"></div>
-    </div>
+    <div class="ticker-wrap"><div class="ticker" id="news-ticker"></div></div>
 
     <div class="swiper main-carousel">
       <div class="swiper-wrapper" id="carousel-images"></div>
@@ -230,24 +213,23 @@
           <div class="card-header">Principal's Desk</div>
           <img
             id="principal-photo"
-            src=""
-            style="width: 100%; border-radius: 2px"
+            src="https://via.placeholder.com/250x300"
+            style="width: 100%"
           />
-          <p
-            id="principal-excerpt"
-            style="font-size: 0.85rem; line-height: 1.4"
-          >
+          <p style="font-size: 0.85rem">
             Welcome to Amer Maharaja P.G. College...
           </p>
-          <a href="#" style="color: var(--tickerBg); font-weight: bold"
+          <a
+            href="content.html?id=principal"
+            style="color: var(--tickerBg); font-weight: bold"
             >Read More...</a
           >
         </div>
       </aside>
 
       <section class="column">
-        <div class="card" style="min-height: 400px">
-          <div class="card-header">Announcements / Notices</div>
+        <div class="card">
+          <div class="card-header">Announcements</div>
           <ul id="notice-list" style="list-style: none; padding: 0"></ul>
         </div>
       </section>
@@ -262,94 +244,69 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      async function loadCarousel() {
-        const container = document.getElementById("carousel-images");
-        const photos = [
-          "https://images.unsplash.com/photo-1562774053-701939374585?w=1200",
-          "https://images.unsplash.com/photo-1523050335392-93851179ae22?w=1200",
-          "https://images.unsplash.com/photo-1541339907198-e08759dfc3ef?w=1200",
-        ];
+      async function init() {
+        try {
+          const settings = await (await fetch("config/settings.json")).json();
+          document.getElementById("college-name").innerText =
+            settings.collegeName;
+          document.getElementById(
+            "dynamic-theme"
+          ).innerHTML = `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; --tickerBg: ${settings.theme.tickerBg}; }`;
 
-        container.innerHTML = photos
-          .map(
-            (url) => `
-                <div class="swiper-slide"><img src="${url}" alt="Campus"></div>
-            `
-          )
-          .join("");
+          // Build Menu
+          const menu = document.getElementById("main-menu");
+          settings.navigation.forEach((item) => {
+            if (item.children) {
+              menu.innerHTML += `<li><a href="${item.url}">${
+                item.name
+              }</a><div class="dropdown-content">${item.children
+                .map((c) => `<a href="${c.url}">${c.name}</a>`)
+                .join("")}</div></li>`;
+            } else {
+              menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
+            }
+          });
 
-        new Swiper(".main-carousel", {
-          loop: true,
-          autoplay: { delay: 4000 },
-          pagination: { el: ".swiper-pagination", clickable: true },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        });
+          // Notices
+          const notices = await (await fetch("config/notices.json")).json();
+          document.getElementById("news-ticker").innerText =
+            notices.join(" | ");
+          notices.forEach((n) => {
+            document.getElementById(
+              "notice-list"
+            ).innerHTML += `<li style="padding:10px 0; border-bottom:1px dashed #ccc; font-size:0.9rem;">▶ ${n}</li>`;
+          });
+
+          // Icons
+          const links = await (await fetch("config/links.json")).json();
+          links.forEach((l) => {
+            document.getElementById(
+              "quick-connect-grid"
+            ).innerHTML += `<a href="${l.url}" class="icon-item"><div class="icon-circle"><i class="${l.icon}"></i></div>${l.name}</a>`;
+          });
+
+          // Carousel
+          const photos = [
+            "https://images.unsplash.com/photo-1562774053-701939374585?w=1200",
+            "https://images.unsplash.com/photo-1523050335392-93851179ae22?w=1200",
+          ];
+          document.getElementById("carousel-images").innerHTML = photos
+            .map((p) => `<div class="swiper-slide"><img src="${p}"></div>`)
+            .join("");
+          new Swiper(".main-carousel", {
+            loop: true,
+            autoplay: { delay: 3000 },
+            pagination: { el: ".swiper-pagination" },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        } catch (e) {
+          console.error("Load Error:", e);
+        }
       }
-
-      async function loadSSNCStyle() {
-        const settings = await (await fetch("config/settings.json")).json();
-        document.getElementById("college-name").innerText =
-          settings.collegeName;
-        document.getElementById("dynamic-theme").innerHTML = `
-                :root { 
-                    --primary: ${settings.theme.primary}; 
-                    --secondary: ${settings.theme.secondary}; 
-                    --tickerBg: ${settings.theme.tickerBg || "#E31837"}; 
-                }`;
-
-        // Build Menu (Fixed Duplication)
-        const menu = document.getElementById("main-menu");
-        menu.innerHTML = "";
-        settings.navigation.forEach((item) => {
-          if (item.children) {
-            menu.innerHTML += `
-                        <li class="has-children">
-                            <a href="${item.url}">${
-              item.name
-            } <i class="fa fa-caret-down" style="font-size:0.7rem"></i></a>
-                            <div class="dropdown-content">
-                                ${item.children
-                                  .map(
-                                    (child) =>
-                                      `<a href="${child.url}">${child.name}</a>`
-                                  )
-                                  .join("")}
-                            </div>
-                        </li>`;
-          } else {
-            menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
-          }
-        });
-
-        // Load Notices
-        const notices = await (await fetch("config/notices.json")).json();
-        document.getElementById("news-ticker").innerText = notices.join(" | ");
-        const noticeList = document.getElementById("notice-list");
-        notices.forEach((n) => {
-          noticeList.innerHTML += `<li style="padding: 10px 0; border-bottom: 1px dashed #ccc; font-size: 0.9rem;">
-                    <i class="fas fa-caret-right" style="color:var(--tickerBg)"></i> ${n}</li>`;
-        });
-
-        // Quick Connect
-        const links = await (await fetch("config/links.json")).json();
-        const iconGrid = document.getElementById("quick-connect-grid");
-        links.forEach((link) => {
-          iconGrid.innerHTML += `
-                    <a href="${link.url}" class="icon-item">
-                        <div class="icon-circle"><i class="${link.icon}"></i></div>
-                        <div>${link.name}</div>
-                    </a>`;
-        });
-
-        document.getElementById("principal-photo").src =
-          "assets/photos/principal/principal.jpg";
-        loadCarousel();
-      }
-
-      loadSSNCStyle();
+      init();
     </script>
   </body>
 </html>

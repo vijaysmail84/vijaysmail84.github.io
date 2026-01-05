@@ -1,4 +1,10 @@
 {
+  "collegeName": "Amer Maharaja P.G. College",
+  "theme": {
+    "primary": "#002D62",
+    "secondary": "#D4AF37",
+    "tickerBg": "#E31837"
+  },
   "navigation": [
     { "name": "Home", "url": "index.html" },
     {
