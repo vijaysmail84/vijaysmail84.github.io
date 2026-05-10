@@ -982,67 +982,14 @@
       <a href="tel:+919887543410" class="btn-white" onclick="handleApplyCall(event)">Apply Now</a>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="main-footer">
-      <div class="footer-grid">
-        <!-- Brand -->
-        <div class="footer-col footer-brand">
-          <img src="assets/photos/logo.png" onerror="this.src='https://via.placeholder.com/62'" alt="Logo" />
-          <div class="footer-college-name" id="footer-name">Amer Maharaja PG College</div>
-          <div class="footer-desc">An institution dedicated to academic excellence and the holistic development of students in Amer, Rajasthan.</div>
-          <div class="footer-social" id="social-icons"></div>
-        </div>
-        <!-- Useful Links -->
-        <div class="footer-col footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="content.html?id=vision">Vision &amp; Mission</a></li>
-            <li><a href="content.html?id=director">Director's Message</a></li>
-            <li><a href="content.html?id=principal">Principal's Message</a></li>
-            <li><a href="content.html?id=labs">Laboratories</a></li>
-            <li><a href="content.html?id=library">Library</a></li>
-            <li><a href="content.html?id=sports">Sports</a></li>
-          </ul>
-        </div>
-        <!-- Programs -->
-        <div class="footer-col footer-links">
-          <h4>Programs</h4>
-          <ul>
-            <li><a href="content.html?id=arts">Arts (B.A. / M.A.)</a></li>
-            <li><a href="content.html?id=commerce">Commerce (B.Com)</a></li>
-            <li><a href="content.html?id=science">Science (B.Sc. / M.Sc.)</a></li>
-          </ul>
-        </div>
-        <!-- Contact -->
-        <div class="footer-col">
-          <h4>Contact Us</h4>
-          <div class="footer-contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span id="footer-addr">NH-11 Highway, Behind Electricity Board, Kunda, Amer</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-phone"></i>
-            <span id="footer-contact">+91 8448-450046</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-envelope"></i>
-            <span id="footer-email">amermaharajacollege@gmail.com</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fab fa-google"></i>
-            <a href="https://share.google/jJIHNKoYocpiB7NqG" target="_blank" rel="noopener noreferrer">Find Us on Google Maps</a>
-          </div>
-          <div class="footer-map">
-            <iframe id="footer-map-iframe" src="" allowfullscreen loading="lazy" title="College Location on Map"></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 <a href="index.html">Amer Maharaja PG College</a>. All Rights Reserved.</span>
-        <span>Affiliated to University of Rajasthan</span>
-      </div>
-    </footer>
+    <!-- SHARED FOOTER (loaded from footer.html) -->
+    <div id="shared-footer"></div>
+    <script>
+      window.footerReady = fetch('footer.html')
+        .then(r => { if (!r.ok) throw new Error('footer fetch failed'); return r.text(); })
+        .then(html => { document.getElementById('shared-footer').innerHTML = html; })
+        .catch(err => { console.error('Failed to load shared footer:', err); });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>

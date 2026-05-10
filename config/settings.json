@@ -41,8 +41,8 @@
       "name": "Courses",
       "url": "#",
       "children": [
-        { "name": "UG Programe", "url": "#" },
-        { "name": "PG Programe", "url": "#" }
+        { "name": "UG Programe", "url": "content.html?id=ugprogram" },
+        { "name": "PG Programe", "url": "content.html?id=pgprogram" }
       ]
     },
     {

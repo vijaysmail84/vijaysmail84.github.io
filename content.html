@@ -410,10 +410,14 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        align-items: flex-start;
       }
       .footer-brand img {
-        height: 58px;
+        max-height: 62px;
+        height: auto;
         width: auto;
+        display: block;
+        object-fit: contain;
       }
       .footer-college-name {
         font-family: "Libre Baskerville", serif;
@@ -690,84 +694,14 @@
       </main>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="main-footer">
-      <div class="footer-grid">
-        <!-- Brand -->
-        <div class="footer-col footer-brand">
-          <img
-            src="assets/photos/logo.png"
-            onerror="this.src = 'https://via.placeholder.com/58'"
-            alt="Logo"
-          />
-          <div class="footer-college-name" id="footer-name">
-            Amer Maharaja PG College
-          </div>
-          <div class="footer-desc">
-            An institution dedicated to academic excellence and the holistic
-            development of students in Amer, Rajasthan.
-          </div>
-          <div class="footer-social" id="social-icons"></div>
-        </div>
-        <!-- Useful Links -->
-        <div class="footer-col footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="content.html?id=vision">Vision &amp; Mission</a></li>
-            <li><a href="content.html?id=director">Director's Message</a></li>
-            <li><a href="content.html?id=principal">Principal's Message</a></li>
-            <li><a href="content.html?id=labs">Laboratories</a></li>
-            <li><a href="content.html?id=library">Library</a></li>
-            <li><a href="content.html?id=sports">Sports</a></li>
-          </ul>
-        </div>
-        <!-- Programs -->
-        <div class="footer-col footer-links">
-          <h4>Programs</h4>
-          <ul>
-            <li><a href="content.html?id=arts">Arts (B.A. / M.A.)</a></li>
-            <li><a href="content.html?id=commerce">Commerce (B.Com)</a></li>
-            <li><a href="content.html?id=science">Science (B.Sc.)</a></li>
-            <li><a href="#">BCA</a></li>
-            <li><a href="#">PGDCA</a></li>
-            <li><a href="#">M.Sc. Computer Science</a></li>
-          </ul>
-        </div>
-        <!-- Contact -->
-        <div class="footer-col">
-          <h4>Contact Us</h4>
-          <div class="footer-contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>NH-11 Highway, Behind Electricity Board, Kunda, Amer</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-phone"></i>
-            <span>+91 8448-450046</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fas fa-envelope"></i>
-            <span>info@amermaharajacollege.com</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fab fa-google"></i>
-            <a
-              href="https://share.google/jJIHNKoYocpiB7NqG"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Find Us on Google Maps</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span
-          >© 2026 <a href="index.html">Amer Maharaja PG College</a>. All Rights
-          Reserved.</span
-        >
-        <span>Affiliated to University of Rajasthan</span>
-      </div>
-    </footer>
+    <!-- SHARED FOOTER (loaded from footer.html) -->
+    <div id="shared-footer"></div>
+    <script>
+      window.footerReady = fetch('footer.html')
+        .then(r => { if (!r.ok) throw new Error('footer fetch failed'); return r.text(); })
+        .then(html => { document.getElementById('shared-footer').innerHTML = html; })
+        .catch(err => { console.error('Failed to load shared footer:', err); });
+    </script>
 
     <script>
       function toggleMenu() {
@@ -792,6 +726,7 @@
       });
 
       async function loadContent() {
+        if (window.footerReady) await window.footerReady;
         const params = new URLSearchParams(window.location.search);
         const pageId = params.get("id") || "vision";
 
@@ -808,6 +743,17 @@
             settings.collegeName;
           document.getElementById("dynamic-theme").textContent =
             `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; }`;
+          // Footer contact & map (populated after footer.html is loaded)
+          const addrEl = document.getElementById('footer-addr');
+          if (addrEl) addrEl.textContent = settings.address;
+          const contactEl = document.getElementById('footer-contact');
+          if (contactEl) contactEl.textContent = settings.phone;
+          const emailEl = document.getElementById('footer-email');
+          if (emailEl) emailEl.textContent = settings.email;
+          const mapFrame = document.getElementById('footer-map-iframe');
+          if (mapFrame) mapFrame.src = settings.mapEmbed;
+          const googleLink = document.getElementById('footer-google-link');
+          if (googleLink) googleLink.href = settings.mapEmbed;
 
           // Navigation
           const menu = document.getElementById("main-menu");
