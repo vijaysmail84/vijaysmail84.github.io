@@ -301,6 +301,27 @@
         border-radius: 8px;
         margin: 14px 0;
       }
+      .content-photo-wrap { margin: 14px 0; text-align: center; }
+      .content-photo { max-width: 100%; border-radius: 8px; display: inline-block; }
+      /* Multi-photo row/col layout for <ph> with multiple filenames */
+      .content-photo-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 14px 0; }
+      .content-photo-col { flex: 0 0 calc(33.333% - 10px); max-width: calc(33.333% - 10px); display:flex; align-items:center; justify-content:center; box-sizing: border-box; }
+      .content-photo-col .content-photo { width: 100%; height: var(--ph-height, 180px); object-fit: cover; display: block; margin: 0 auto; border-radius: 8px; }
+      @media (max-width: 900px) {
+        .content-photo-col { flex: 0 0 calc(50% - 10px); max-width: calc(50% - 10px); }
+      }
+      @media (max-width: 480px) {
+        .content-photo-col { flex: 0 0 100%; max-width: 100%; }
+      }
+      /* Lightweight carousel for <ph cr=1> */
+      .ph-carousel { display:flex; justify-content:center; position: relative; border-radius: 8px; }
+      .ph-carousel-viewport { width: var(--ph-width, 100%); overflow: hidden; border-radius: 8px; }
+      .ph-carousel-track { display: flex; transition: transform 0.5s ease; will-change: transform; }
+      .ph-carousel-slide { min-width: 100%; flex-shrink: 0; display:flex; align-items:center; justify-content:center; padding: 6px; box-sizing: border-box; }
+      .ph-carousel-slide img { width: var(--ph-width, 100%); max-width: 100%; height: var(--ph-height, 180px); object-fit: cover; display: block; border-radius: 6px; }
+      .ph-carousel-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display:flex; gap:8px; z-index: 30; }
+      .ph-carousel-dot { width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,0.6); cursor:pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+      .ph-carousel-dot.active { background: var(--secondary); }
 
       /* Sidebar */
       .sidebar {
@@ -802,7 +823,62 @@
           document.getElementById("hero-title").textContent = data.title;
           document.getElementById("breadcrumb-title").textContent = data.title;
           document.getElementById("page-title").textContent = data.title;
-          document.getElementById("page-body").innerHTML = data.body;
+          // Replace <ph ...>filename</ph> tags with image links pointing to assets/photos/<pageId>/filename
+          // Support optional sx attribute: sx='sm' => 25%, sx='md' => 50%, sx='lg' => 100%
+          let bodyHtml = data.body || '';
+          bodyHtml = bodyHtml.replace(/<ph\b([^>]*)>([\s\S]*?)<\/ph>/gi, (m, attrText, fname) => {
+            const raw = (fname || '').trim();
+            if (!raw) return '';
+            // split comma-separated filenames and validate each
+            const files = raw.split(',').map(s => s.trim()).filter(Boolean).filter(f => /^[a-zA-Z0-9._-]+$/.test(f));
+            if (!files.length) return '';
+
+            // parse sx attribute (supports single or double quotes)
+            let sxMatch = attrText.match(/\bsx\s*=\s*['"]?(sm|md|lg)['"]?/i);
+            const sx = sxMatch ? sxMatch[1].toLowerCase() : 'md';
+            const sizeMap = { sm: '25%', md: '50%', lg: '100%' };
+            const heightMap = { sm: '120px', md: '180px', lg: '320px' };
+
+            // parse carousel flag cr=1
+            let crMatch = attrText.match(/\bcr\s*=\s*['"]?1['"]?/i);
+
+            // If carousel requested, render a lightweight carousel
+            if (crMatch) {
+              const uid = 'phc-' + Math.random().toString(36).slice(2,9);
+              const width = sizeMap[sx] || sizeMap.md;
+              const height = heightMap[sx] || heightMap.md;
+              const slides = files.map(f => {
+                const src = `assets/photos/${pageId}/${f}`;
+                return `<div class="ph-carousel-slide" style="--ph-height:${height}; --ph-width:${width};"><img src="${src}" alt="${f}" loading="lazy"/></div>`;
+              }).join('');
+              const dots = files.map((_,i) => `<div class="ph-carousel-dot" data-index="${i}"></div>`).join('');
+              // trackWidth in percent relative to viewport: files.length * 100%
+              const trackWidth = (files.length * 100) + '%';
+              return `<div class="ph-carousel" id="${uid}" data-interval="4000" style="--ph-width:${width}">`+
+                       `<div class="ph-carousel-viewport"><div class="ph-carousel-track" style="width:${trackWidth}">${slides}</div></div>`+
+                       `<div class="ph-carousel-dots">${dots}</div>`+
+                     `</div>`;
+            }
+
+            // If multiple files (non-carousel), render a centered responsive row and apply sx sizing
+            if (files.length > 1) {
+              const width = sizeMap[sx] || sizeMap.md;
+              const height = heightMap[sx] || heightMap.md;
+              const cols = files.map(f => {
+                const src = `assets/photos/${pageId}/${f}`;
+                return `<div class="content-photo-col"><img src="${src}" alt="${f}" loading="lazy" class="content-photo" style="width:${width}; --ph-height:${height};"/></div>`;
+              }).join('');
+              return `<div class="content-photo-row">${cols}</div>`;
+            }
+
+            // single file -> apply sx sizing
+            const file = files[0];
+            const width = sizeMap[sx] || sizeMap.md;
+            const height = heightMap[sx] || heightMap.md;
+            const src = `assets/photos/${pageId}/${file}`;
+            return `<div class="content-photo-wrap" style="width:${width}; --ph-height:${height};"><img src="${src}" alt="${file}" loading="lazy" class="content-photo"/></div>`;
+          });
+          document.getElementById("page-body").innerHTML = bodyHtml;
         } catch (err) {
           document.getElementById("hero-title").textContent = "Page Not Found";
           document.getElementById("page-title").textContent =
@@ -813,6 +889,91 @@
       }
 
       loadContent();
+    </script>
+    <script>
+      // Initialize any ph carousels created dynamically
+      function initPhCarousels() {
+        const carousels = document.querySelectorAll('.ph-carousel');
+        carousels.forEach(carousel => {
+          if (carousel.__phInit) return;
+          carousel.__phInit = true;
+          const viewport = carousel.querySelector('.ph-carousel-viewport');
+          const track = carousel.querySelector('.ph-carousel-track');
+          const slides = Array.from(carousel.querySelectorAll('.ph-carousel-slide'));
+          const dotsContainer = carousel.querySelector('.ph-carousel-dots');
+          const interval = parseInt(carousel.dataset.interval || 4000, 10);
+          let idx = 0;
+          let timer = null;
+
+          function goTo(i) {
+            idx = (i + slides.length) % slides.length;
+            if (track && viewport) {
+              const shift = -idx * viewport.clientWidth;
+              track.style.transform = `translateX(${shift}px)`;
+            }
+            if (dotsContainer) {
+              dotsContainer.querySelectorAll('.ph-carousel-dot').forEach((d, di) => d.classList.toggle('active', di === idx));
+            }
+          }
+
+          function start() {
+            stop();
+            timer = setInterval(() => goTo(idx + 1), interval);
+          }
+          function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+          if (dotsContainer) {
+            dotsContainer.querySelectorAll('.ph-carousel-dot').forEach(d => {
+              d.addEventListener('click', () => { goTo(parseInt(d.dataset.index, 10)); start(); });
+            });
+          }
+
+          // compute viewport pixel width from --ph-width (supports '%' or 'px') and apply to viewport and slides
+          (function computeSizes() {
+            try {
+              const cs = getComputedStyle(carousel);
+              let phw = cs.getPropertyValue('--ph-width').trim() || carousel.style.getPropertyValue('--ph-width').trim() || '100%';
+              // determine available parent width
+              const parentWidth = carousel.parentElement ? carousel.parentElement.clientWidth : document.body.clientWidth;
+              let vw = parentWidth; // default
+              if (phw.endsWith('%')) {
+                const pct = parseFloat(phw) || 100;
+                vw = Math.round(parentWidth * (pct / 100));
+              } else if (phw.endsWith('px')) {
+                vw = parseInt(phw, 10) || parentWidth;
+              } else if (!isNaN(parseFloat(phw))) {
+                // numeric value treated as px
+                vw = parseInt(phw, 10) || parentWidth;
+              }
+              if (viewport) viewport.style.width = vw + 'px';
+              // set slide widths and track width in px
+              slides.forEach(s => { s.style.minWidth = vw + 'px'; s.style.maxWidth = vw + 'px'; });
+              if (track) track.style.width = (slides.length * vw) + 'px';
+            } catch (e) {
+              // ignore
+            }
+          })();
+          carousel.addEventListener('mouseenter', stop);
+          carousel.addEventListener('mouseleave', start);
+
+          // initial state
+          goTo(0);
+          if (slides.length > 1) start();
+        });
+      }
+
+      // Run initializer after content changes
+      const observer = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+          if (m.type === 'childList' && Array.from(m.addedNodes).some(n => n.nodeType === 1)) {
+            initPhCarousels();
+            break;
+          }
+        }
+      });
+      observer.observe(document.getElementById('page-body'), { childList: true, subtree: true });
+      // Also run once on load
+      window.addEventListener('load', initPhCarousels);
     </script>
   </body>
 </html>

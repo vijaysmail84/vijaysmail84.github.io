@@ -422,14 +422,15 @@
       @keyframes blink { 50% { opacity: 0; } }
 
       /* Principal */
-      .principal-card-body { padding: 24px; text-align: center; display: flex; flex-direction: column; justify-content: center; flex: 1; }
+      .principal-card-body { padding: 24px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1; }
       .principal-card-body img {
         width: 138px;
         height: 162px;
         object-fit: cover;
         border-radius: 8px;
         border: 3px solid var(--secondary);
-        margin-bottom: 14px;
+        margin: 0 0 14px 0;
+        display: block;
       }
       .principal-name { font-weight: 700; font-size: 0.95rem; color: var(--primary); margin-bottom: 3px; }
       .principal-role { font-size: 0.78rem; color: #888; margin-bottom: 14px; }
