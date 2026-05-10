@@ -1,326 +1,871 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amer Maharaja P.G. College</title>
+    <title>Amer Maharaja PG College</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <style id="dynamic-theme"></style>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
-
       :root {
         --primary: #002d62;
         --secondary: #d4af37;
-        --nav-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --accent: #c8781a;
+        --light-bg: #f5f7fa;
+        --border: #e8e8e8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #f4f4f4;
+        font-family: "Poppins", Arial, sans-serif;
         color: #333;
+        background: var(--light-bg);
         overflow-x: hidden;
       }
 
-      /* 1. HEADER (Synced Shine & Alignment) */
-      .top-header {
-        background: linear-gradient(
-          145deg,
-          #ffffff 0%,
-          #f0f4f8 50%,
-          #e2e8f0 100%
-        ) !important;
-        padding: 10px 5% !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        align-items: center !important;
-        gap: 25px;
-        border-bottom: 5px solid #8a6d3b;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        position: relative;
-        z-index: 1001;
+      /* ══ TOP INFO BAR ══ */
+      .top-info-bar {
+        background: var(--primary);
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.78rem;
+        padding: 7px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .top-info-left span {
+        margin-right: 22px;
+      }
+      .top-info-left i {
+        margin-right: 5px;
+        color: var(--secondary);
+      }
+      .top-info-right a {
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        margin-left: 14px;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+      }
+      .top-info-right a:hover {
+        color: var(--secondary);
       }
 
-      .logo-box img {
-        height: 75px !important;
-      }
-
-      .title-box {
-        flex-grow: 1;
-        white-space: nowrap;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      .title-box h1 {
-        font-family: "Libre Baskerville", serif;
-        font-size: clamp(1.1rem, 3vw, 1.8rem) !important;
-        font-style: italic;
-        margin: 0 !important;
-        background: linear-gradient(
-          to right,
-          #002d62 20%,
-          #004a99 40%,
-          #ffffff 50%,
-          #004a99 60%,
-          #002d62 80%
-        );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shine 4s linear infinite;
-      }
-      @keyframes shine {
-        to {
-          background-position: 200% center;
-        }
-      }
-
-      .title-box p {
-        font-family: "Libre Baskerville", serif;
-        margin: 0 !important;
-        background: linear-gradient(
-          135deg,
-          #8a6d3b 0%,
-          #b38728 50%,
-          #8a6d3b 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 700 !important;
-        font-size: 0.9rem !important;
-      }
-
-      /* 2. NAVIGATION (Centered for Desktop) */
-      nav {
-        /* Subtle gradient for depth */
-        background: linear-gradient(to bottom, var(--primary), #001a3a);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+      /* ══ STICKY HEADER ══ */
+      .site-header {
+        background: #fff;
+        padding: 14px 5%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 5%;
-        /* This shadow creates the 3D 'floating' effect */
-        box-shadow: var(--nav-shadow);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.09);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .header-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+      .header-brand img {
+        height: 68px;
+      }
+      .header-brand-text h1 {
+        font-family: "Libre Baskerville", serif;
+        font-size: 1.22rem;
+        color: var(--primary);
+        line-height: 1.2;
+      }
+      .header-brand-text p {
+        font-size: 0.74rem;
+        color: #777;
+        margin-top: 3px;
       }
 
-      .menu-toggle {
-        display: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 15px;
-        width: 100%;
-        text-align: left;
+      /* ══ NAVIGATION ══ */
+      .main-nav {
+        display: flex;
+        align-items: center;
       }
-
       .nav-links {
         list-style: none;
         display: flex;
         margin: 0;
         padding: 0;
       }
-
       .nav-links li {
         position: relative;
       }
-
-      .nav-links a {
-        color: #fff !important;
-        padding: 18px 20px;
+      .nav-links > li > a {
         display: block;
+        padding: 10px 14px;
+        color: var(--primary);
         text-decoration: none;
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         font-weight: 600;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        letter-spacing: 0.4px;
+        transition: color 0.25s;
+        white-space: nowrap;
+      }
+      .nav-links > li > a:hover,
+      .nav-links > li:hover > a {
+        color: var(--accent);
+      }
+      .nav-links > li::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        height: 3px;
+        background: var(--secondary);
+        transition:
+          left 0.3s,
+          right 0.3s;
+      }
+      .nav-links > li:hover::after {
+        left: 0;
+        right: 0;
       }
 
-      .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--secondary) !important;
-        /* Lift text slightly on hover */
-        transform: translateY(-1px);
-      }
-
-      /* 3. DROPDOWNS */
       .dropdown-content {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         background: #fff;
-        min-width: 220px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 9999;
+        min-width: 230px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        z-index: 999;
+        border-top: 3px solid var(--secondary);
       }
-
       .dropdown-content a {
-        color: #333 !important;
-        padding: 12px 15px !important;
-        text-transform: none !important;
-        border-bottom: 1px solid #eee;
+        display: block;
+        padding: 10px 18px;
+        color: #444;
+        text-decoration: none;
+        font-size: 0.82rem;
+        border-bottom: 1px solid #f0f0f0;
+        transition:
+          background 0.2s,
+          padding-left 0.2s;
       }
-
-      .nav-links li:hover .dropdown-content {
+      .dropdown-content a:hover {
+        background: var(--light-bg);
+        color: var(--primary);
+        padding-left: 24px;
+      }
+      .nav-links li:hover > .dropdown-content {
         display: block;
       }
 
-      /* 4. CONTENT CARD */
-      .content-card {
-        max-width: 1000px;
-        margin: 40px auto;
-        background: #fff;
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        min-height: 500px;
-      }
-
-      .content-card h1 {
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 2px solid var(--primary);
         color: var(--primary);
-        border-bottom: 3px solid var(--secondary);
-        padding-bottom: 15px;
-        margin-top: 0;
+        font-size: 0.88rem;
+        cursor: pointer;
+        padding: 7px 12px;
+        border-radius: 4px;
+        font-weight: 600;
       }
 
-      /* 5. MOBILE VIEW FIX (Full Width Drawer) */
-      @media (max-width: 900px) {
-        .top-header {
-          flex-direction: column !important;
-          text-align: center;
+      /* ══ PAGE HERO / BREADCRUMB ══ */
+      .page-hero {
+        background: linear-gradient(135deg, var(--primary) 0%, #003d80 100%);
+        padding: 18px 5%;
+        color: #fff;
+      }
+      .page-hero h2 {
+        font-family: "Libre Baskerville", serif;
+        font-size: 1.4rem;
+        margin-bottom: 6px;
+        line-height: 1.15;
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.72);
+      }
+      .breadcrumb a {
+        color: var(--secondary);
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+      .breadcrumb i {
+        font-size: 0.65rem;
+      }
+
+      /* ══ CONTENT LAYOUT ══ */
+      .content-wrapper {
+        width: 80%;
+        max-width: 1400px;
+        margin: 45px auto;
+        padding: 0;
+        display: block;
+      }
+
+      /* Main content card */
+      .content-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+        padding: 42px 44px;
+        min-height: 480px;
+      }
+      .content-card h1 {
+        font-family: "Libre Baskerville", serif;
+        font-size: 1.72rem;
+        color: var(--primary);
+        padding-bottom: 14px;
+        border-bottom: 3px solid var(--secondary);
+        margin-bottom: 26px;
+        display: none; /* shown by JS once loaded */
+      }
+      #page-title {
+        display: block;
+      }
+
+      /* Page body typography */
+      #page-body h2,
+      #page-body h3 {
+        color: var(--primary);
+        margin: 22px 0 10px;
+        font-family: "Libre Baskerville", serif;
+      }
+      #page-body h2 {
+        font-size: 1.35rem;
+      }
+      #page-body h3 {
+        font-size: 1.1rem;
+      }
+      #page-body p {
+        font-size: 0.93rem;
+        line-height: 1.82;
+        color: #555;
+        margin-bottom: 14px;
+      }
+      #page-body ul,
+      #page-body ol {
+        padding-left: 22px;
+        margin-bottom: 14px;
+      }
+      #page-body li {
+        font-size: 0.92rem;
+        line-height: 1.78;
+        color: #555;
+        margin-bottom: 5px;
+      }
+      #page-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 18px 0;
+        font-size: 0.88rem;
+      }
+      #page-body th {
+        background: var(--primary);
+        color: #fff;
+        padding: 10px 14px;
+        text-align: left;
+      }
+      #page-body td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #eee;
+      }
+      #page-body tr:nth-child(even) td {
+        background: #f9f9f9;
+      }
+      #page-body img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 14px 0;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .sidebar-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+      }
+      .sidebar-card-header {
+        background: var(--primary);
+        color: #fff;
+        padding: 13px 18px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .sidebar-card-header i {
+        color: var(--secondary);
+      }
+      .sidebar-links {
+        list-style: none;
+        padding: 8px 0;
+      }
+      .sidebar-links li a {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 18px;
+        font-size: 0.84rem;
+        color: #444;
+        text-decoration: none;
+        border-bottom: 1px solid #f5f5f5;
+        transition: all 0.22s;
+      }
+      .sidebar-links li a:hover {
+        background: var(--light-bg);
+        color: var(--primary);
+        padding-left: 24px;
+      }
+      .sidebar-links li a i {
+        color: var(--accent);
+        font-size: 0.78rem;
+        width: 14px;
+      }
+      .sidebar-links li:last-child a {
+        border-bottom: none;
+      }
+
+      .contact-box {
+        padding: 18px;
+        font-size: 0.84rem;
+        color: #555;
+      }
+      .contact-box .citem {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+      .contact-box .citem i {
+        color: var(--secondary);
+        flex-shrink: 0;
+        margin-top: 2px;
+        width: 14px;
+      }
+      .contact-box a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .contact-box a:hover {
+        color: var(--accent);
+      }
+
+      /* ══ FOOTER ══ */
+      .main-footer {
+        background: #0c1b2e;
+        color: rgba(255, 255, 255, 0.72);
+        padding: 55px 5% 24px;
+        margin-top: 55px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
+        gap: 48px;
+        margin-bottom: 42px;
+      }
+      .footer-col h4 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+        padding-bottom: 9px;
+        border-bottom: 2px solid var(--secondary);
+        display: inline-block;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-brand img {
+        height: 58px;
+        width: auto;
+      }
+      .footer-college-name {
+        font-family: "Libre Baskerville", serif;
+        font-size: 1.05rem;
+        color: #fff;
+        line-height: 1.4;
+      }
+      .footer-desc {
+        font-size: 0.83rem;
+        line-height: 1.78;
+      }
+      .footer-social {
+        display: flex;
+        gap: 9px;
+        margin-top: 16px;
+      }
+      .footer-social a {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.3s;
+      }
+      .footer-social a:hover {
+        background: var(--secondary);
+        color: var(--primary);
+      }
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-links ul li {
+        margin-bottom: 10px;
+      }
+      .footer-links ul li a {
+        color: rgba(255, 255, 255, 0.68);
+        text-decoration: none;
+        font-size: 0.84rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition:
+          color 0.2s,
+          padding-left 0.2s;
+      }
+      .footer-links ul li a::before {
+        content: "›";
+        color: var(--secondary);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .footer-links ul li a:hover {
+        color: var(--secondary);
+        padding-left: 4px;
+      }
+      .footer-contact-item {
+        display: flex;
+        gap: 11px;
+        margin-bottom: 14px;
+        font-size: 0.84rem;
+        align-items: flex-start;
+      }
+      .footer-contact-item i {
+        color: var(--secondary);
+        flex-shrink: 0;
+        margin-top: 2px;
+        width: 15px;
+        text-align: center;
+      }
+      .footer-contact-item a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-contact-item a:hover {
+        color: var(--secondary);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+      }
+      .footer-bottom a {
+        color: var(--secondary);
+        text-decoration: none;
+      }
+
+      /* ══ RESPONSIVE ══ */
+      @media (max-width: 1000px) {
+        .content-wrapper {
+          width: 95%;
+          padding: 0 5%;
         }
-        nav {
-          justify-content: flex-end;
-          padding: 0;
+        .sidebar {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+      }
+      @media (max-width: 768px) {
+        .top-info-bar {
+          display: none;
+        }
+        .site-header {
+          padding: 12px 5%;
+        }
+        .header-brand img {
+          height: 54px;
+        }
+        .header-brand-text h1 {
+          font-size: 0.98rem;
+        }
+        .header-brand-text p {
+          display: none;
         }
         .menu-toggle {
-          display: block !important;
+          display: block;
         }
-
         .nav-links {
-          display: none !important;
-          flex-direction: column !important;
-          width: 100%;
-          background: var(--primary);
+          display: none;
+          flex-direction: column;
           position: absolute;
           top: 100%;
           left: 0;
+          right: 0;
+          background: #fff;
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+          z-index: 999;
+          border-top: 3px solid var(--secondary);
         }
-
         .nav-links.active {
-          display: flex !important;
+          display: flex;
         }
-        .nav-links li {
-          width: 100%;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .nav-links > li::after {
+          display: none;
         }
-
+        .nav-links > li > a {
+          border-bottom: 1px solid #f0f0f0;
+          padding: 12px 5%;
+        }
         .dropdown-content {
-          position: static !important;
-          display: block !important;
-          background: rgba(0, 0, 0, 0.15) !important;
+          position: static;
           box-shadow: none;
-          padding-left: 15px;
+          border-top: none;
+          background: #f8f8f8;
+          padding-left: 18px;
+          display: block !important;
         }
-
-        .dropdown-content a {
-          color: #ccc !important;
+        .page-hero {
+          padding: 12px 5%;
+        }
+        .page-hero h2 {
+          font-size: 1.2rem;
         }
         .content-card {
-          margin: 20px 5%;
-          padding: 20px;
+          padding: 26px 22px;
+        }
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+        .main-footer {
+          padding: 45px 5% 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        .content-card {
+          padding: 20px 16px;
         }
       }
     </style>
   </head>
   <body>
-    <header class="top-header">
-      <div class="logo-box">
+    <!-- TOP INFO BAR -->
+    <div class="top-info-bar">
+      <div class="top-info-left">
+        <span
+          ><i class="fas fa-map-marker-alt"></i>NH-11 Highway, Behind
+          Electricity Board, Kunda, Amer</span
+        >
+        <span><i class="fas fa-phone"></i>+91 8448-450046</span>
+      </div>
+      <div class="top-info-right">
+        <a
+          href="#"
+          id="social-fb"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a
+          href="#"
+          id="social-ig"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="#"
+          id="social-yt"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+          ><i class="fab fa-youtube"></i
+        ></a>
+      </div>
+    </div>
+
+    <!-- STICKY HEADER -->
+    <header class="site-header">
+      <a class="header-brand" href="index.html">
         <img
           src="assets/photos/logo.png"
-          onerror="this.src='https://via.placeholder.com/80'"
+          onerror="this.src = 'https://via.placeholder.com/68x68?text=Logo'"
+          alt="College Logo"
         />
-      </div>
-      <div class="title-box">
-        <h1 id="college-name">Amer Maharaja College</h1>
-        <p>Affiliated to University of Rajasthan</p>
-      </div>
+        <div class="header-brand-text">
+          <h1 id="college-name">Amer Maharaja PG College</h1>
+          <p>Affiliated to University of Rajasthan</p>
+        </div>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button
+          class="menu-toggle"
+          onclick="toggleMenu()"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bars"></i> Menu
+        </button>
+        <ul class="nav-links" id="main-menu"></ul>
+      </nav>
     </header>
 
-    <nav>
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i> MENU
+    <!-- PAGE HERO / BREADCRUMB -->
+    <div class="page-hero">
+      <h2 id="hero-title">Loading…</h2>
+      <div class="breadcrumb">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span id="breadcrumb-title">…</span>
       </div>
-      <ul class="nav-links" id="main-menu"></ul>
-    </nav>
+    </div>
 
-    <main class="content-card">
-      <h1 id="page-title">Loading...</h1>
-      <div id="page-body" class="page-body">Please wait...</div>
-    </main>
+    <!-- MAIN CONTENT + SIDEBAR -->
+    <div class="content-wrapper">
+      <!-- Main card -->
+      <main class="content-card">
+        <h1 id="page-title">Loading…</h1>
+        <div id="page-body"></div>
+      </main>
+    </div>
 
-    <footer
-      style="
-        background: var(--primary);
-        color: #fff;
-        padding: 40px 5%;
-        text-align: center;
-      "
-    >
-      © 2026 Amer Maharaja P.G. College. All Rights Reserved.
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-col footer-brand">
+          <img
+            src="assets/photos/logo.png"
+            onerror="this.src = 'https://via.placeholder.com/58'"
+            alt="Logo"
+          />
+          <div class="footer-college-name" id="footer-name">
+            Amer Maharaja PG College
+          </div>
+          <div class="footer-desc">
+            An institution dedicated to academic excellence and the holistic
+            development of students in Amer, Rajasthan.
+          </div>
+          <div class="footer-social" id="social-icons"></div>
+        </div>
+        <!-- Useful Links -->
+        <div class="footer-col footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="content.html?id=vision">Vision &amp; Mission</a></li>
+            <li><a href="content.html?id=director">Director's Message</a></li>
+            <li><a href="content.html?id=principal">Principal's Message</a></li>
+            <li><a href="content.html?id=labs">Laboratories</a></li>
+            <li><a href="content.html?id=library">Library</a></li>
+            <li><a href="content.html?id=sports">Sports</a></li>
+          </ul>
+        </div>
+        <!-- Programs -->
+        <div class="footer-col footer-links">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="content.html?id=arts">Arts (B.A. / M.A.)</a></li>
+            <li><a href="content.html?id=commerce">Commerce (B.Com)</a></li>
+            <li><a href="content.html?id=science">Science (B.Sc.)</a></li>
+            <li><a href="#">BCA</a></li>
+            <li><a href="#">PGDCA</a></li>
+            <li><a href="#">M.Sc. Computer Science</a></li>
+          </ul>
+        </div>
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>NH-11 Highway, Behind Electricity Board, Kunda, Amer</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+91 8448-450046</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@amermaharajacollege.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fab fa-google"></i>
+            <a
+              href="https://share.google/jJIHNKoYocpiB7NqG"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Find Us on Google Maps</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span
+          >© 2026 <a href="index.html">Amer Maharaja PG College</a>. All Rights
+          Reserved.</span
+        >
+        <span>Affiliated to University of Rajasthan</span>
+      </div>
     </footer>
 
     <script>
       function toggleMenu() {
-        document.querySelector(".nav-links").classList.toggle("active");
+        const menu = document.getElementById("main-menu");
+        const expanded = menu.classList.toggle("active");
+        document
+          .querySelector(".menu-toggle")
+          .setAttribute("aria-expanded", expanded);
       }
+
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("main-menu");
+        const btn = document.querySelector(".menu-toggle");
+        if (
+          menu.classList.contains("active") &&
+          !menu.contains(e.target) &&
+          !btn.contains(e.target)
+        ) {
+          menu.classList.remove("active");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
 
       async function loadContent() {
         const params = new URLSearchParams(window.location.search);
         const pageId = params.get("id") || "vision";
 
         try {
-          const settings = await (await fetch("config/settings.json")).json();
-          document.getElementById("college-name").innerText =
-            settings.collegeName;
-          document.getElementById(
-            "dynamic-theme"
-          ).innerHTML = `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; }`;
+          const [settings, social] = await Promise.all([
+            fetch("config/settings.json").then((r) => r.json()),
+            fetch("config/social.json").then((r) => r.json()),
+          ]);
 
+          // Theme & branding
+          document.getElementById("college-name").textContent =
+            settings.collegeName;
+          document.getElementById("footer-name").textContent =
+            settings.collegeName;
+          document.getElementById("dynamic-theme").textContent =
+            `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; }`;
+
+          // Navigation
           const menu = document.getElementById("main-menu");
           settings.navigation.forEach((item) => {
-            if (item.children) {
-              menu.innerHTML += `<li>
-                <a href="${item.url}">${
-                item.name
-              } <i class="fa fa-caret-down" style="font-size:0.7rem"></i></a>
-                <div class="dropdown-content">${item.children
-                  .map((c) => `<a href="${c.url}">${c.name}</a>`)
-                  .join("")}</div>
-              </li>`;
+            const li = document.createElement("li");
+            if (item.children && item.children.length) {
+              li.innerHTML = `<a href="${item.url}">${item.name} <i class="fa fa-caret-down" style="font-size:0.6rem;margin-left:3px"></i></a>
+                <div class="dropdown-content">
+                  ${item.children.map((c) => `<a href="${c.url}">${c.name}</a>`).join("")}
+                </div>`;
             } else {
-              menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
+              li.innerHTML = `<a href="${item.url}">${item.name}</a>`;
             }
+            menu.appendChild(li);
           });
 
-          const data = await (
-            await fetch(`config/pages/${pageId}.json`)
-          ).json();
-          document.title = `${data.title} | Amer Maharaja`;
-          document.getElementById("page-title").innerText = data.title;
+          // Social icons
+          const iconMap = {
+            facebook: "fab fa-facebook-f",
+            instagram: "fab fa-instagram",
+            youtube: "fab fa-youtube",
+          };
+          const topBarIds = {
+            facebook: "social-fb",
+            instagram: "social-ig",
+            youtube: "social-yt",
+          };
+          const socialContainer = document.getElementById("social-icons");
+          Object.keys(social).forEach((k) => {
+            if (!social[k]) return;
+            const a = document.createElement("a");
+            a.href = social[k];
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.innerHTML = `<i class="${iconMap[k] || "fas fa-link"}"></i>`;
+            socialContainer.appendChild(a);
+            const topEl = document.getElementById(topBarIds[k]);
+            if (topEl) topEl.href = social[k];
+          });
+
+          // Page content
+          const data = await fetch(`config/pages/${pageId}.json`).then((r) =>
+            r.json(),
+          );
+          document.title = `${data.title} | Amer Maharaja PG College`;
+          document.getElementById("hero-title").textContent = data.title;
+          document.getElementById("breadcrumb-title").textContent = data.title;
+          document.getElementById("page-title").textContent = data.title;
           document.getElementById("page-body").innerHTML = data.body;
-        } catch (e) {
-          document.getElementById("page-title").innerText =
+        } catch (err) {
+          document.getElementById("hero-title").textContent = "Page Not Found";
+          document.getElementById("page-title").textContent =
             "Under Construction";
+          document.getElementById("page-body").innerHTML =
+            '<p style="color:#888;font-size:0.95rem">This page is currently under construction. Please check back soon.</p>';
         }
       }
+
       loadContent();
     </script>
   </body>

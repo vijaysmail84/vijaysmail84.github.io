@@ -4,703 +4,1191 @@
     <meta name="facebook-domain-verification" content="4t8don78t0koe3zt7qr0hhdccfd9df" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amer Maharaja College | Home</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
+    <title>Amer Maharaja PG College | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
     <style id="dynamic-theme"></style>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
       :root {
         --primary: #002d62;
         --secondary: #d4af37;
-        --tickerBg: #e31837;
-        /* NEW: 3D Depth Variable */
-        --nav-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --accent: #c8781a;
+        --text: #333;
+        --light-bg: #f5f7fa;
+        --border: #e8e8e8;
       }
 
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
       body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #f4f4f4;
-        color: #333;
+        font-family: 'Poppins', Arial, sans-serif;
+        color: var(--text);
+        background: #fff;
         overflow-x: hidden;
       }
 
-      /* 1. HEADER: Added subtle shadow for 3D lift */
-      .top-header {
-        background: linear-gradient(
-          145deg,
-          #ffffff 0%,
-          #f0f4f8 50%,
-          #e2e8f0 100%
-        ) !important;
-        padding: 10px 5% !important;
-        display: flex !important;
-        flex-direction: row !important; /* Force items into a horizontal line */
-        flex-wrap: nowrap !important; /* Prevent the title from going below the logo */
-        align-items: center !important;
-        gap: 15px; /* Reduced gap to save horizontal space */
-        border-bottom: 5px solid #8a6d3b;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        position: relative;
-        z-index: 1001;
+      /* ══ TOP INFO BAR ══ */
+      .top-info-bar {
+        background: var(--primary);
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.78rem;
+        padding: 7px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
-
-      .logo-box img {
-        height: 85px !important;
-        /* filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.2)); */
-        transition: transform 0.3s ease;
+      .top-info-left span { margin-right: 22px; }
+      .top-info-left i { margin-right: 5px; color: var(--secondary); }
+      .top-info-right a {
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        margin-left: 14px;
+        font-size: 0.95rem;
+        transition: color 0.2s;
       }
-      .logo-box img:hover {
-        transform: scale(1.05); /* Interactive smart feel */
-      }
+      .top-info-right a:hover { color: var(--secondary); }
 
-      .title-box {
-        flex-grow: 1;
-        min-width: 0; /* Important fix for Flexbox text wrapping */
-        white-space: nowrap; /* Forces the text to stay on one line */
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      .title-box h1 {
-        font-family: "Libre Baskerville", serif;
-        font-size: clamp(
-          1.2rem,
-          4vw,
-          2.1rem
-        ) !important; /* Smart font sizing: shrinks on small screens */
-        font-style: italic;
-        margin: 0px 0px 0px 0px !important;
-        letter-spacing: -0.5px;
-        padding-left: 10px;
-        /* Create the Gradient for the Shine */
-        background: linear-gradient(
-          to right,
-          #002d62 20%,
-          #0056b3 40%,
-          #ffffff 50%,
-          #0056b3 60%,
-          #002d62 80%
-        );
-        background-size: 200% auto; /* Stretch it to allow movement */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        /* The Shine Animation */
-        animation: shine 4s linear infinite;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      /* 2. Shine Keyframes */
-      @keyframes shine {
-        to {
-          background-position: 200% center;
-        }
-      }
-
-      .title-box {
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        cursor: default;
-        display: inline-block;
-      }
-
-      .title-box p {
-        font-family: "Libre Baskerville", serif;
-        margin: 2px 0 0 0 !important;
-        padding-left: 8px;
-        padding-top: 10px;
-        background: linear-gradient(
-          135deg,
-          #8a6d3b 0%,
-          #b38728 50%,
-          #8a6d3b 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 700 !important;
-        font-size: 1rem !important;
-        display: inline-block;
-        filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
-      }
-
-      /* 2. NAVIGATION: Added Gradient and 3D Shadow */
-      nav {
-        /* Subtle gradient for depth */
-        background: linear-gradient(to bottom, var(--primary), #001a3a);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+      /* ══ STICKY HEADER ══ */
+      .site-header {
+        background: #fff;
+        padding: 14px 5%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 5%;
-        /* This shadow creates the 3D 'floating' effect */
-        box-shadow: var(--nav-shadow);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.09);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .header-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+      .header-brand img { height: 68px; }
+      .header-brand-text h1 {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.22rem;
+        color: var(--primary);
+        line-height: 1.2;
+      }
+      .header-brand-text p {
+        font-size: 0.74rem;
+        color: #777;
+        margin-top: 3px;
       }
 
+      /* ══ NAVIGATION ══ */
+      .main-nav { display: flex; align-items: center; }
       .nav-links {
         list-style: none;
         display: flex;
         margin: 0;
         padding: 0;
       }
-
-      .nav-links li {
-        position: relative;
-      }
-
-      /* 3. MENU LINKS: Added hover transition */
-      .nav-links a {
-        color: #fff !important;
-        padding: 18px 20px;
+      .nav-links li { position: relative; }
+      .nav-links > li > a {
         display: block;
+        padding: 10px 14px;
+        color: var(--primary);
         text-decoration: none;
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         font-weight: 600;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        letter-spacing: 0.4px;
+        transition: color 0.25s;
+        white-space: nowrap;
       }
-
-      .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--secondary) !important;
-        /* Lift text slightly on hover */
-        transform: translateY(-1px);
+      .nav-links > li > a:hover,
+      .nav-links > li:hover > a { color: var(--accent); }
+      .nav-links > li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        right: 50%;
+        height: 3px;
+        background: var(--secondary);
+        transition: left 0.3s, right 0.3s;
       }
+      .nav-links > li:hover::after { left: 0; right: 0; }
 
-      /* DROPDOWNS (Visibility Fix) */
+      /* Dropdown */
       .dropdown-content {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         background: #fff;
-        min-width: 220px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        min-width: 230px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        z-index: 999;
+        border-top: 3px solid var(--secondary);
       }
       .dropdown-content a {
-        color: #333 !important;
-        padding: 12px 15px !important;
-        text-transform: none !important;
-        border-bottom: 1px solid #eee;
-        font-weight: 500;
+        display: block;
+        padding: 10px 18px;
+        color: #444;
+        text-decoration: none;
+        font-size: 0.82rem;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background 0.2s, padding-left 0.2s;
       }
       .dropdown-content a:hover {
-        background: #f1f1f1;
+        background: var(--light-bg);
+        color: var(--primary);
+        padding-left: 24px;
       }
-      .nav-links li:hover .dropdown-content {
-        display: block;
+      .nav-links li:hover > .dropdown-content { display: block; }
+
+      /* Hamburger */
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        font-size: 0.88rem;
+        cursor: pointer;
+        padding: 7px 12px;
+        border-radius: 4px;
+        font-weight: 600;
       }
 
-      /* TICKER */
-      .ticker-wrap {
-        background: linear-gradient(
-          90deg,
-          #e31837,
-          #b2132b
-        ) !important; /* Gradient for depth */
-        color: white;
-        padding: 12px 0;
-        overflow: hidden;
-        font-weight: bold;
-        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3),
-          0 4px 10px rgba(0, 0, 0, 0.1); /* 3D Inner shadow */
-        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .ticker {
-        white-space: nowrap;
-        display: inline-block;
-        animation: marquee 30s linear infinite;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Makes text pop */
-      }
-
-      @keyframes marquee {
-        0% {
-          transform: translateX(100%);
-        }
-        100% {
-          transform: translateX(-100%);
-        }
-      }
-
-      /* CAROUSEL */
-      .main-carousel {
-        width: 100%;
-        height: 400px;
-        background: #000;
-        position: relative;
-      }
-      .main-carousel .swiper-slide img {
+      /* ══ HERO SECTION ══ */
+      .hero-section { position: relative; height: 520px; overflow: hidden; }
+      .hero-swiper { position: absolute; inset: 0; }
+      .hero-swiper .swiper-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-
-      /* NOTICE BOARD (SSU STYLE) */
-      .notice-container {
-        height: 400px; /* Increased height to match principal image area */
-        overflow: hidden;
-        position: relative;
-        border: 1px solid #ddd;
-        background: #fff;
-        margin-top: 10px;
-      }
-      .notice-scroll {
+      .hero-overlay {
         position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(0, 45, 98, 0.88) 40%,
+          rgba(0, 30, 70, 0.32) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 8%;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .hero-overlay > * { pointer-events: auto; }
+      .hero-badge {
+        display: inline-block;
+        background: var(--secondary);
+        color: var(--primary);
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 5px 16px;
+        border-radius: 3px;
+        margin-bottom: 18px;
+        width: fit-content;
+      }
+      .hero-overlay h2 {
+        font-family: 'Libre Baskerville', serif;
+        font-size: clamp(1.75rem, 4vw, 3rem);
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 15px;
+        max-width: 580px;
+      }
+      .hero-overlay p {
+        font-size: 0.97rem;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 490px;
+        line-height: 1.65;
+        margin-bottom: 30px;
+      }
+      .hero-btn {
+        display: inline-block;
+        background: var(--secondary);
+        color: var(--primary);
+        padding: 12px 34px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.88rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+        width: fit-content;
+      }
+      .hero-btn:hover {
+        background: #fff;
+        color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+      }
+
+      /* ══ NEWS TICKER ══ */
+      .ticker-wrap {
+        background: var(--primary);
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+      }
+      .ticker-label {
+        background: var(--accent);
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .ticker-inner { overflow: hidden; flex: 1; display: flex; align-items: center; }
+      .ticker {
+        white-space: nowrap;
+        display: inline-block;
+        animation: marquee 38s linear infinite;
+        font-size: 0.83rem;
+        color: rgba(255, 255, 255, 0.9);
+        padding: 10px 0;
+      }
+      @keyframes marquee {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+      }
+
+      /* ══ SECTION HELPERS ══ */
+      .section-label {
+        display: block;
+        font-size: 0.77rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .section-title {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.9rem;
+        color: var(--primary);
+        line-height: 1.3;
+        margin-bottom: 12px;
+      }
+      .section-divider {
+        width: 52px;
+        height: 4px;
+        background: var(--secondary);
+        border-radius: 2px;
+        margin: 12px 0 32px;
+      }
+      .section-subtitle {
+        font-size: 0.92rem;
+        color: #666;
+        line-height: 1.72;
+        max-width: 620px;
+        margin-bottom: 38px;
+      }
+
+      /* ══ WHY CHOOSE US ══ */
+      .why-section { background: var(--light-bg); padding: 75px 5%; }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+      }
+      .why-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 36px 28px;
+        text-align: center;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+        transition: all 0.35s ease;
+        border-bottom: 4px solid transparent;
+      }
+      .why-card:hover {
+        transform: translateY(-9px);
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.12);
+        border-bottom-color: var(--secondary);
+      }
+      .why-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        transition: background 0.3s;
+      }
+      .why-card:hover .why-icon { background: var(--accent); }
+      .why-icon i { font-size: 1.55rem; color: #fff; }
+      .why-card h4 {
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+      .why-card p {
+        font-size: 0.86rem;
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+      .why-more {
+        display: inline-block;
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .why-more:hover { color: var(--primary); }
+
+      /* ══ NOTICE + PRINCIPAL ══ */
+      .info-section { padding: 75px 5%; background: #fff; }
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 32px;
+      }
+      /* Ensure both columns expand so their cards match height */
+      .info-grid > div { display: flex; flex-direction: column; }
+      .card-panel {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .card-panel-header {
+        background: var(--primary);
+        color: #fff;
+        padding: 15px 22px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .card-panel-header i { color: var(--secondary); }
+
+      /* Notice Board */
+      .notice-container { overflow: hidden; position: relative; flex: 1; min-height: 320px; }
+      .notice-scroll {
+        position: relative;
         width: 100%;
-        animation: scrollUp 20s linear infinite;
+        animation: scrollUp 24s linear infinite;
       }
-      .notice-scroll:hover {
-        animation-play-state: paused;
-      }
+      .notice-scroll:hover { animation-play-state: paused; }
       @keyframes scrollUp {
-        0% {
-          top: 100%;
-        }
-        100% {
-          top: -120%;
-        }
+        0%   { top: 100%; }
+        100% { top: -220%; }
       }
+      .notice-item {
+        padding: 13px 22px;
+        border-bottom: 1px solid #f2f2f2;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.87rem;
+        color: #444;
+        line-height: 1.5;
+      }
+      .notice-item i { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
       .new-badge {
-        background: #ff0000;
-        color: white;
-        font-size: 0.65rem;
+        background: #e31837;
+        color: #fff;
+        font-size: 0.6rem;
         padding: 2px 6px;
         border-radius: 3px;
-        margin-left: 5px;
-        animation: blink 1s infinite;
+        margin-left: 6px;
+        animation: blink 1s step-end infinite;
+        vertical-align: middle;
+        font-weight: 700;
       }
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
+      @keyframes blink { 50% { opacity: 0; } }
 
-      /* LAYOUT GRID */
-      .portal-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 300px; /* Column 1 & 2 are now equal */
-        gap: 25px;
-        padding: 30px 5%;
-      }
-      .card {
-        background: white;
-        border: none !important; /* Remove flat borders */
-        border-radius: 15px !important;
-        overflow: hidden;
-        /* This shadow creates the physical depth */
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-      }
-
-      /* Card Lift on Hover */
-      .card:hover {
-        transform: translateY(-10px); /* Moves card toward user */
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Deepens shadow as it lifts */
-      }
-
-      .card-header {
-        background: linear-gradient(135deg, var(--primary), #003a7a) !important;
-        color: white;
-        padding: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        text-align: center;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Makes text pop */
-        border-bottom: 3px solid var(--secondary);
-      }
-
-      /* EVENTS & FOOTER */
-      .events-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        padding: 0 5%;
-      }
-      .event-card {
-        background: white;
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      }
-      .event-card img {
-        width: 100%;
-        height: 200px;
+      /* Principal */
+      .principal-card-body { padding: 24px; text-align: center; display: flex; flex-direction: column; justify-content: center; flex: 1; }
+      .principal-card-body img {
+        width: 138px;
+        height: 162px;
         object-fit: cover;
+        border-radius: 8px;
+        border: 3px solid var(--secondary);
+        margin-bottom: 14px;
       }
-      .main-footer {
+      .principal-name { font-weight: 700; font-size: 0.95rem; color: var(--primary); margin-bottom: 3px; }
+      .principal-role { font-size: 0.78rem; color: #888; margin-bottom: 14px; }
+      .principal-msg {
+        font-size: 0.83rem;
+        color: #555;
+        line-height: 1.68;
+        text-align: left;
+        margin-bottom: 16px;
+      }
+      .read-more-link {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.82rem;
+        text-decoration: none;
+      }
+      .read-more-link:hover { color: var(--primary); }
+
+      /* ══ STATS BAR ══ */
+      .stats-bar { background: var(--primary); padding: 55px 5%; }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        text-align: center;
+      }
+      .stat-item {
+        padding: 10px 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .stat-item:last-child { border-right: none; }
+      .stat-number {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--secondary);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.72);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* ══ GALLERY ══ */
+      .gallery-section { background: var(--light-bg); padding: 75px 5%; }
+      .gallery-header { text-align: center; }
+      .gallery-header .section-divider { margin: 12px auto 38px; }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        width: 70%;
+        max-width: 1200px;
+        margin: 12px auto 0 auto;
+      }
+      /* Force square tiles and center-crop images */
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        aspect-ratio: 1 / 1;
+        display: block;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transition: transform 0.42s ease;
+        display: block;
+      }
+      .gallery-item:hover img { transform: scale(1.09); }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 45, 98, 0.52);
+        opacity: 0;
+        transition: opacity 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gallery-overlay i { font-size: 2rem; color: #fff; }
+      .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+      /* ══ QUICK LINKS ══ */
+      .quicklinks-section { padding: 75px 5%; background: #fff; }
+      .quicklinks-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 18px;
+      }
+      .quicklink-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 28px 14px;
+        border-radius: 10px;
+        background: var(--light-bg);
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--primary);
+        transition: all 0.3s;
+        text-align: center;
+      }
+      .quicklink-card:hover {
         background: var(--primary);
-        color: white;
-        padding: 50px 5% 20px;
-        margin-top: 60px;
+        color: #fff;
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      }
+      .quicklink-card i {
+        font-size: 2rem;
+        color: var(--accent);
+        transition: color 0.3s;
+      }
+      .quicklink-card:hover i { color: var(--secondary); }
+      .quicklink-card span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+      }
+
+      /* ══ CTA BANNER ══ */
+      .cta-banner {
+        background: linear-gradient(135deg, #c8781a 0%, #9e5c0e 100%);
+        padding: 70px 5%;
+        text-align: center;
+        color: #fff;
+      }
+      .cta-label {
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.88;
+        margin-bottom: 12px;
+      }
+      .cta-banner h2 {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 2.1rem;
+        margin-bottom: 16px;
+        line-height: 1.3;
+      }
+      .cta-banner p {
+        font-size: 0.93rem;
+        opacity: 0.88;
+        margin-bottom: 30px;
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.65;
+      }
+      .btn-white {
+        display: inline-block;
+        background: #fff;
+        color: var(--accent);
+        padding: 13px 40px;
+        border-radius: 4px;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.88rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+      }
+      .btn-white:hover {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+      }
+
+      /* ══ FOOTER ══ */
+      .main-footer {
+        background: #0c1b2e;
+        color: rgba(255, 255, 255, 0.72);
+        padding: 68px 5% 28px;
       }
       .footer-grid {
         display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 50px;
+        grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
+        gap: 48px;
+        margin-bottom: 50px;
       }
-      .footer-info h3 {
+      .footer-col h4 {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 22px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--secondary);
+        display: inline-block;
+      }
+      .footer-brand { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+      .footer-brand img {
+        max-height: 62px;
+        height: auto;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .footer-college-name {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.08rem;
+        color: #fff;
+        line-height: 1.4;
+      }
+      .footer-desc { font-size: 0.84rem; line-height: 1.78; }
+      .footer-social { display: flex; gap: 10px; margin-top: 18px; }
+      .footer-social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: all 0.3s;
+      }
+      .footer-social a:hover { background: var(--secondary); color: var(--primary); }
+      .footer-links ul { list-style: none; padding: 0; }
+      .footer-links ul li { margin-bottom: 10px; }
+      .footer-links ul li a {
+        color: rgba(255, 255, 255, 0.68);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.25s, padding-left 0.25s;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .footer-links ul li a::before {
+        content: '›';
         color: var(--secondary);
-        margin-bottom: 25px;
+        font-size: 1.1rem;
+        line-height: 1;
+        flex-shrink: 0;
       }
-      .social-links a {
-        color: white;
-        font-size: 1.6rem;
-        margin-right: 15px;
-        transition: 0.3s;
+      .footer-links ul li a:hover { color: var(--secondary); padding-left: 4px; }
+      .footer-contact-item {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 0.85rem;
+        align-items: flex-start;
       }
-      .social-links a:hover {
+      .footer-contact-item i {
         color: var(--secondary);
+        flex-shrink: 0;
+        margin-top: 3px;
+        width: 16px;
+        text-align: center;
+      }
+      .footer-contact-item a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-contact-item a:hover { color: var(--secondary); }
+      .footer-map iframe {
+        width: 100%;
+        height: 155px;
+        border-radius: 8px;
+        border: none;
+        margin-top: 12px;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.81rem;
+      }
+      .footer-bottom a { color: var(--secondary); text-decoration: none; }
+
+      /* ══ RESPONSIVE ══ */
+      @media (max-width: 1100px) {
+        .why-grid { grid-template-columns: repeat(2, 1fr); }
+        .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        .quicklinks-grid { grid-template-columns: repeat(4, 1fr); }
+        .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .stat-item:nth-child(2) { border-right: none; }
       }
 
-      /* MOBILE VIEW - REFINED RESPONSIVENESS */
-      @media (max-width: 900px) {
-        /* 1. Show the Hamburger Icon */
-        .menu-toggle {
-          display: block !important;
-          color: white;
-          font-size: 1.5rem;
-          cursor: pointer;
-          padding: 15px;
-          font-weight: bold;
-        }
+      @media (max-width: 768px) {
+        .top-info-bar { display: none; }
+        .site-header { padding: 12px 5%; }
+        .header-brand img { height: 54px; }
+        .header-brand-text h1 { font-size: 0.98rem; }
+        .header-brand-text p { display: none; }
 
-        /* 2. Hide standard links and turn into a mobile drawer */
+        .menu-toggle { display: block; }
         .nav-links {
-          display: none !important; /* Hidden by default on mobile */
-          flex-direction: column !important;
-          width: 100%;
-          background: var(--primary);
+          display: none;
+          flex-direction: column;
           position: absolute;
           top: 100%;
           left: 0;
-          z-index: 2000;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          right: 0;
+          background: #fff;
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+          z-index: 999;
+          border-top: 3px solid var(--secondary);
         }
-
-        /* 3. Show menu when .active class is added via JS */
-        .nav-links.active {
-          display: flex !important;
-        }
-
-        .nav-links li {
-          width: 100%;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-links a {
-          padding: 15px 5% !important;
-          width: 100%;
-        }
-
-        /* 4. Fix dropdowns for mobile (they stack instead of float) */
+        .nav-links.active { display: flex; }
+        .nav-links > li::after { display: none; }
+        .nav-links > li > a { border-bottom: 1px solid #f0f0f0; padding: 12px 5%; }
         .dropdown-content {
-          position: static !important;
+          position: static;
           box-shadow: none;
-          background: rgba(0, 0, 0, 0.2) !important;
-          padding-left: 20px;
-          width: 100%;
-          display: block !important; /* Keep sub-items visible in mobile list */
+          border-top: none;
+          background: #f8f8f8;
+          padding-left: 18px;
+          display: block !important;
         }
 
-        .dropdown-content a {
-          color: #ccc !important;
-        }
+        .hero-section { height: 360px; }
+        .hero-overlay h2 { font-size: 1.5rem; }
+        .hero-overlay p { display: none; }
 
-        /* 5. Stack the Dashboard Widgets */
-        .portal-grid {
-          grid-template-columns: 1fr !important;
-          padding: 20px 5%;
-          gap: 20px;
-        }
+        .info-grid { grid-template-columns: 1fr; }
+        .why-grid { grid-template-columns: 1fr; }
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        .quicklinks-grid { grid-template-columns: repeat(3, 1fr); }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 
-        .top-header {
-          flex-direction: column !important;
-          text-align: center;
-          gap: 10px;
-        }
+        .why-section, .info-section, .gallery-section,
+        .quicklinks-section { padding: 50px 5%; }
+        .stats-bar { padding: 45px 5%; }
+        .cta-banner { padding: 50px 5%; }
+        .cta-banner h2 { font-size: 1.65rem; }
+        .main-footer { padding: 50px 5% 22px; }
+      }
 
-        .title-box h1 {
-          font-size: 1.4rem !important;
-          white-space: normal !important; /* Allow title to wrap on tiny screens */
-        }
-
-        .main-carousel {
-          height: 250px !important;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr !important;
-        }
+      @media (max-width: 480px) {
+        .hero-section { height: 270px; }
+        .hero-overlay { padding: 0 5%; }
+        .hero-overlay h2 { font-size: 1.2rem; }
+        .hero-btn { padding: 10px 24px; font-size: 0.82rem; }
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        .quicklinks-grid { grid-template-columns: repeat(2, 1fr); }
+        .section-title { font-size: 1.55rem; }
+        .stat-number { font-size: 2.2rem; }
+        .cta-banner h2 { font-size: 1.4rem; }
       }
     </style>
   </head>
   <body>
-    <header class="top-header">
-      <div class="logo-box">
-        <img
-          src="assets/photos/logo.png"
-          onerror="this.src='https://via.placeholder.com/80'"
-        />
-      </div>
-      <div class="title-box">
-        <h1 id="college-name">Loading...</h1>
-        <p>Affiliated to University of Rajasthan</p>
-      </div>
-    </header>
 
-    <nav>
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i> MENU
+    <!-- TOP INFO BAR -->
+    <div class="top-info-bar">
+      <div class="top-info-left">
+        <span><i class="fas fa-map-marker-alt"></i>NH-11 Highway, Behind Electricity Board, Kunda, Amer</span>
+        <span><i class="fas fa-phone"></i>+91 8448-450046</span>
       </div>
-      <ul class="nav-links" id="main-menu"></ul>
-    </nav>
-
-    <div class="ticker-wrap"><div class="ticker" id="top-ticker"></div></div>
-
-    <div class="swiper main-carousel">
-      <div class="swiper-wrapper" id="carousel-images"></div>
-      <div class="swiper-pagination"></div>
+      <div class="top-info-right">
+        <a href="#" id="social-fb" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" id="social-ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" id="social-yt" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
     </div>
 
-    <main class="portal-grid">
-      <aside class="card">
-        <div class="card-header">Principal's Desk</div>
-        <div style="padding: 15px; text-align: center">
-          <div class="principal-box">
-            <img
-              id="principal-photo"
-              src="assets/photos/principal/principal.png"
-              onerror="this.src='https://via.placeholder.com/250x300'"
-            />
-          </div>
-          <p style="font-size: 0.9rem; font-weight: bold; margin: 5px 0">
-            Dr. R.K. Gurjar
-          </p>
-          <p style="font-size: 0.85rem; line-height: 1.5; text-align: left">
-            Welcome to Amer Maharaja P.G. College, an institution dedicated to
-            academic excellence and the holistic development of our students. As
-            we navigate the academic session of 2026, our commitment to
-            nurturing responsible global citizens remains stronger than ever. We
-            believe that education is not merely the acquisition of knowledge
-            but a journey of self-discovery and empowerment.
-          </p>
-          <a
-            href="content.html?id=principal"
-            style="
-              color: var(--tickerBg);
-              font-weight: bold;
-              text-decoration: none;
-            "
-            >Read More...</a
-          >
+    <!-- STICKY HEADER -->
+    <header class="site-header">
+      <a class="header-brand" href="index.html">
+        <img src="assets/photos/logo.png" onerror="this.src='https://via.placeholder.com/68x68?text=Logo'" alt="College Logo" />
+        <div class="header-brand-text">
+          <h1 id="college-name">Amer Maharaja PG College</h1>
+          <p>Affiliated to University of Rajasthan</p>
         </div>
-      </aside>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars"></i> Menu
+        </button>
+        <ul class="nav-links" id="main-menu"></ul>
+      </nav>
+    </header>
 
-      <section class="card">
-        <div class="card-header">Latest Announcements</div>
-        <div class="notice-container">
-          <div class="notice-scroll" id="notice-board-list"></div>
+    <!-- HERO CAROUSEL -->
+    <section class="hero-section" aria-label="Campus highlights">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper" id="carousel-images"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="hero-overlay">
+        <div class="hero-badge">Welcome to Amer Maharaja PG College</div>
+        <h2>Your Future<br>Starts Here.</h2>
+        <p>Shaping minds and building futures through quality education, research excellence, and holistic student development.</p>
+        <a href="content.html?id=vision" class="hero-btn">Explore Courses</a>
+      </div>
+    </section>
+
+    <!-- NEWS TICKER -->
+    <div class="ticker-wrap" role="marquee" aria-live="off">
+      <div class="ticker-label"><i class="fas fa-bullhorn"></i> Latest News</div>
+      <div class="ticker-inner">
+        <div class="ticker" id="top-ticker">Loading latest announcements…</div>
+      </div>
+    </div>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-section">
+      <span class="section-label">Why Choose Us</span>
+      <div class="section-title">An Outstanding Institution<br>for Your Academic Journey</div>
+      <div class="section-divider"></div>
+      <div class="section-subtitle">We are committed to providing quality education with modern facilities and experienced faculty to help every student achieve their full potential.</div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h4>Expert Faculty</h4>
+          <p>Experienced and dedicated teachers bringing academic excellence and real-world expertise to every classroom.</p>
+          <a href="#" class="why-more">Learn More →</a>
         </div>
-      </section>
-
-      <aside class="card">
-        <div class="card-header">Quick Connect</div>
-        <div
-          id="icon-grid"
-          style="
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            padding: 20px;
-            text-align: center;
-          "
-        ></div>
-      </aside>
-    </main>
-
-    <h2 style="text-align: center; color: var(--primary); margin: 40px 0 20px">
-      Events & Media
-    </h2>
-    <div class="events-grid" id="events-container"></div>
-
-    <footer class="main-footer">
-      <div class="footer-grid">
-        <div class="footer-info">
-          <h3 id="footer-name"></h3>
-          <p>
-            <i
-              class="fas fa-map-marker-alt"
-              style="color: var(--secondary); width: 25px"
-            ></i>
-            <span id="footer-addr"></span>
-          </p>
-          <p>
-            <i
-              class="fas fa-phone"
-              style="color: var(--secondary); width: 25px"
-            ></i>
-            <span id="footer-contact"></span>
-          </p>
-          <div class="social-links" id="social-icons"></div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-flask"></i></div>
+          <h4>Modern Laboratories</h4>
+          <p>State-of-the-art labs for Science and Computer Science, enhancing practical knowledge and research skills.</p>
+          <a href="content.html?id=labs" class="why-more">Learn More →</a>
         </div>
-        <div>
-          <iframe
-            id="footer-map"
-            width="100%"
-            height="250"
-            style="border: 0; border-radius: 10px"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-book-open"></i></div>
+          <h4>Rich Library</h4>
+          <p>A well-stocked library with thousands of books, journals, and digital resources for comprehensive academic support.</p>
+          <a href="content.html?id=library" class="why-more">Learn More →</a>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-trophy"></i></div>
+          <h4>Sports &amp; Activities</h4>
+          <p>Excellent sports infrastructure and vibrant extracurricular activities promoting holistic student development.</p>
+          <a href="content.html?id=sports" class="why-more">Learn More →</a>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-users"></i></div>
+          <h4>Vibrant Community</h4>
+          <p>An inclusive campus life with student clubs, NSS, cultural events, and fests throughout the academic year.</p>
+          <a href="content.html?id=nss" class="why-more">Learn More →</a>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h4>Diverse Programs</h4>
+          <p>UG and PG programs across Arts, Commerce, and Science streams to suit every career aspiration and goal.</p>
+          <a href="#" class="why-more">Learn More →</a>
         </div>
       </div>
-      <p
-        style="
-          text-align: center;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          margin-top: 40px;
-          padding-top: 20px;
-          font-size: 0.8rem;
-          opacity: 0.8;
-        "
-      >
-        © 2026 Amer Maharaja P.G. College. All Rights Reserved.
-      </p>
+    </section>
+
+    <!-- NOTICE BOARD + PRINCIPAL'S DESK -->
+    <section class="info-section">
+      <div class="info-grid">
+        <!-- Notice Board -->
+        <div>
+          <span class="section-label">Announcements</span>
+          <div class="section-title">Latest Notices</div>
+          <div class="section-divider"></div>
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <i class="fas fa-bell"></i> Notice Board
+            </div>
+            <div class="notice-container">
+              <div class="notice-scroll" id="notice-board-list"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Principal's Desk -->
+        <div>
+          <span class="section-label">Leadership</span>
+          <div class="section-title">Principal's Desk</div>
+          <div class="section-divider"></div>
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <i class="fas fa-user-tie"></i> From the Principal
+            </div>
+            <div class="principal-card-body">
+              <img
+                id="principal-photo"
+                src="assets/photos/principal/principal.png"
+                onerror="this.src='https://via.placeholder.com/138x162?text=Principal'"
+                alt="Principal"
+              />
+              <div class="principal-name">Dr. R.K. Gurjar</div>
+              <div class="principal-role">Principal, Amer Maharaja PG College</div>
+              <div class="principal-msg">
+                Welcome to Amer Maharaja P.G. College — an institution dedicated to academic excellence and the holistic development of our students. Education here is not merely the acquisition of knowledge, but a journey of self-discovery and empowerment.
+              </div>
+              <a href="content.html?id=principal" class="read-more-link">Read Full Message →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">18+</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15000+</div>
+          <div class="stat-label">Students Enrolled</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Faculty Members</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Academic Programs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPUS GALLERY -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <span class="section-label">Campus Life</span>
+        <div class="section-title">Our Gallery</div>
+        <div class="section-divider"></div>
+      </div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="quicklinks-section">
+      <span class="section-label">Quick Access</span>
+      <div class="section-title">Quick Connect</div>
+      <div class="section-divider"></div>
+      <div class="quicklinks-grid" id="icon-grid"></div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+      <div class="cta-label">New Academic Session 2026-27</div>
+      <h2>Admissions Are Now Open!</h2>
+      <p>Join our vibrant academic community and take the first step towards a bright and successful future with Amer Maharaja PG College.</p>
+      <a href="tel:+919887543410" class="btn-white" onclick="handleApplyCall(event)">Apply Now</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-col footer-brand">
+          <img src="assets/photos/logo.png" onerror="this.src='https://via.placeholder.com/62'" alt="Logo" />
+          <div class="footer-college-name" id="footer-name">Amer Maharaja PG College</div>
+          <div class="footer-desc">An institution dedicated to academic excellence and the holistic development of students in Amer, Rajasthan.</div>
+          <div class="footer-social" id="social-icons"></div>
+        </div>
+        <!-- Useful Links -->
+        <div class="footer-col footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="content.html?id=vision">Vision &amp; Mission</a></li>
+            <li><a href="content.html?id=director">Director's Message</a></li>
+            <li><a href="content.html?id=principal">Principal's Message</a></li>
+            <li><a href="content.html?id=labs">Laboratories</a></li>
+            <li><a href="content.html?id=library">Library</a></li>
+            <li><a href="content.html?id=sports">Sports</a></li>
+          </ul>
+        </div>
+        <!-- Programs -->
+        <div class="footer-col footer-links">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="content.html?id=arts">Arts (B.A. / M.A.)</a></li>
+            <li><a href="content.html?id=commerce">Commerce (B.Com)</a></li>
+            <li><a href="content.html?id=science">Science (B.Sc. / M.Sc.)</a></li>
+          </ul>
+        </div>
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span id="footer-addr">NH-11 Highway, Behind Electricity Board, Kunda, Amer</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <span id="footer-contact">+91 8448-450046</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <span id="footer-email">amermaharajacollege@gmail.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fab fa-google"></i>
+            <a href="https://share.google/jJIHNKoYocpiB7NqG" target="_blank" rel="noopener noreferrer">Find Us on Google Maps</a>
+          </div>
+          <div class="footer-map">
+            <iframe id="footer-map-iframe" src="" allowfullscreen loading="lazy" title="College Location on Map"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 <a href="index.html">Amer Maharaja PG College</a>. All Rights Reserved.</span>
+        <span>Affiliated to University of Rajasthan</span>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      function toggleMenu() {
-        const nav = document.querySelector(".nav-links");
-        nav.classList.toggle("active"); // This triggers the .nav-links.active CSS
+      function handleApplyCall(e) {
+        // On non-mobile devices, prevent attempting a call and navigate to content page instead
+        if (!/Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent)) {
+          e.preventDefault();
+          window.location.href = 'content.html?id=vision';
+        }
       }
+      function toggleMenu() {
+        const menu = document.getElementById('main-menu');
+        const expanded = menu.classList.toggle('active');
+        document.querySelector('.menu-toggle').setAttribute('aria-expanded', expanded);
+      }
+
+      // Close mobile menu on outside click
+      document.addEventListener('click', function (e) {
+        const menu = document.getElementById('main-menu');
+        const btn = document.querySelector('.menu-toggle');
+        if (menu.classList.contains('active') && !menu.contains(e.target) && !btn.contains(e.target)) {
+          menu.classList.remove('active');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
       async function init() {
         try {
           const [settings, social, notices, links] = await Promise.all([
-            fetch("config/settings.json").then((r) => r.json()),
-            fetch("config/social.json").then((r) => r.json()),
-            fetch("config/notices.json").then((r) => r.json()),
-            fetch("config/links.json").then((r) => r.json()),
+            fetch('config/settings.json').then(r => r.json()),
+            fetch('config/social.json').then(r => r.json()),
+            fetch('config/notices.json').then(r => r.json()),
+            fetch('config/links.json').then(r => r.json()),
           ]);
 
-          // Branding & Theme
-          document.getElementById("college-name").innerText =
-            settings.collegeName;
-          document.getElementById("footer-name").innerText =
-            settings.collegeName;
-          document.getElementById("footer-addr").innerText = settings.address;
-          document.getElementById(
-            "footer-contact"
-          ).innerText = `${settings.phone} | ${settings.email}`;
-          document.getElementById("footer-map").src = settings.mapEmbed;
-          document.getElementById(
-            "dynamic-theme"
-          ).innerHTML = `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; --tickerBg: ${settings.theme.tickerBg}; }`;
+          // ── Branding & Theme ──
+          document.getElementById('college-name').textContent = settings.collegeName;
+          document.getElementById('footer-name').textContent = settings.collegeName;
+          document.getElementById('footer-addr').textContent = settings.address;
+          document.getElementById('footer-contact').textContent = settings.phone;
+          document.getElementById('footer-email').textContent = settings.email;
+          document.getElementById('footer-map-iframe').src = settings.mapEmbed;
+          document.getElementById('dynamic-theme').textContent =
+            `:root { --primary: ${settings.theme.primary}; --secondary: ${settings.theme.secondary}; }`;
 
-          // Notices (isNew Logic)
+          // ── Ticker ──
           const tickerText = notices
-            .filter((n) => n.isNew)
-            .map((n) => n.text)
-            .join(" | ");
-          document.getElementById("top-ticker").innerText =
-            tickerText || "Welcome to Amer Maharaja P.G. College";
+            .filter(n => n.isNew)
+            .map(n => n.text)
+            .join('   •   ');
+          document.getElementById('top-ticker').textContent =
+            tickerText || 'Welcome to ' + settings.collegeName;
 
-          const board = document.getElementById("notice-board-list");
-          notices.forEach((n) => {
-            board.innerHTML += `<div style="padding:15px; border-bottom:1px solid #eee; font-size:0.9rem;">
-                        <i class="fas fa-caret-right" style="color:var(--tickerBg)"></i> ${
-                          n.text
-                        } ${n.isNew ? '<span class="new-badge">NEW</span>' : ""}
-                    </div>`;
+          // ── Notice Board ──
+          const board = document.getElementById('notice-board-list');
+          notices.forEach(n => {
+            const div = document.createElement('div');
+            div.className = 'notice-item';
+            div.innerHTML = `<i class="fas fa-chevron-right"></i><span>${n.text}${n.isNew ? '<span class="new-badge">NEW</span>' : ''}</span>`;
+            board.appendChild(div);
           });
 
-          // Navigation
-          const menu = document.getElementById("main-menu");
-          settings.navigation.forEach((item) => {
-            if (item.children) {
-              menu.innerHTML += `<li class="has-children">
-                            <a href="${item.url}">${
-                item.name
-              } <i class="fa fa-caret-down" style="font-size:0.7rem"></i></a>
-                            <div class="dropdown-content">${item.children
-                              .map((c) => `<a href="${c.url}">${c.name}</a>`)
-                              .join("")}</div>
-                        </li>`;
+          // ── Navigation ──
+          const menu = document.getElementById('main-menu');
+          settings.navigation.forEach(item => {
+            const li = document.createElement('li');
+            if (item.children && item.children.length) {
+              li.innerHTML = `<a href="${item.url}">${item.name} <i class="fa fa-caret-down" style="font-size:0.6rem;margin-left:3px"></i></a>
+                <div class="dropdown-content">
+                  ${item.children.map(c => `<a href="${c.url}">${c.name}</a>`).join('')}
+                </div>`;
             } else {
-              menu.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
+              li.innerHTML = `<a href="${item.url}">${item.name}</a>`;
             }
+            menu.appendChild(li);
           });
 
-          // Social & Quick Connect
-          const socialIcons = {
-            facebook: "fab fa-facebook",
-            instagram: "fab fa-instagram",
-            youtube: "fab fa-youtube",
+          // ── Social Links ──
+          const iconMap = {
+            facebook:  'fab fa-facebook-f',
+            instagram: 'fab fa-instagram',
+            youtube:   'fab fa-youtube',
           };
-          Object.keys(social).forEach((k) => {
-            if (social[k])
-              document.getElementById(
-                "social-icons"
-              ).innerHTML += `<a href="${social[k]}" target="_blank"><i class="${socialIcons[k]}"></i></a>`;
-          });
-          links.forEach((l) => {
-            document.getElementById(
-              "icon-grid"
-            ).innerHTML += `<a href="${l.url}" style="text-decoration:none; color:var(--primary); font-size:0.75rem;"><i class="${l.icon}" style="display:block; font-size:1.6rem; margin-bottom:8px; color:var(--primary);"></i>${l.name}</a>`;
+          const topBarIds = { facebook: 'social-fb', instagram: 'social-ig', youtube: 'social-yt' };
+          const socialContainer = document.getElementById('social-icons');
+          Object.keys(social).forEach(k => {
+            if (!social[k]) return;
+            const a = document.createElement('a');
+            a.href = social[k];
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.innerHTML = `<i class="${iconMap[k] || 'fas fa-link'}"></i>`;
+            socialContainer.appendChild(a);
+            const topEl = document.getElementById(topBarIds[k]);
+            if (topEl) topEl.href = social[k];
           });
 
-          // Carousel & Events
+          // ── Quick Links ──
+          const iconGrid = document.getElementById('icon-grid');
+          links.forEach(l => {
+            const a = document.createElement('a');
+            a.href = l.url;
+            a.className = 'quicklink-card';
+            a.innerHTML = `<i class="${l.icon}"></i><span>${l.name}</span>`;
+            iconGrid.appendChild(a);
+          });
+
+          // ── Hero Carousel ──
           const photos = [
-            "assets/photos/campus/campus-1.jpg",
-            "assets/photos/campus/campus-2.jpg",
-            "assets/photos/campus/campus-3.jpg",
-            "assets/photos/campus/campus-4.jpg",
-            "assets/photos/campus/campus-5.jpg",
-            "assets/photos/campus/campus-6.jpg",
-            "assets/photos/campus/campus-7.jpg",
+              'assets/photos/campus/campus-1.jpg',
+              'assets/photos/campus/campus-2.jpg',
+              'assets/photos/campus/campus-3.jpg',
+              'assets/photos/campus/campus-4.jpg',
+              'assets/photos/campus/campus-5.jpg',
+              'assets/photos/campus/campus-6.jpg',
+              'assets/photos/campus/campus-7.jpg',
+              'assets/photos/campus/campus-8.jpg',
           ];
-          document.getElementById("carousel-images").innerHTML = photos
-            .map((p) => `<div class="swiper-slide"><img src="${p}"></div>`)
-            .join("");
-          new Swiper(".main-carousel", {
+          const wrapper = document.getElementById('carousel-images');
+          photos.forEach(p => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.innerHTML = `<img src="${p}" alt="Campus" loading="lazy">`;
+            wrapper.appendChild(slide);
+          });
+          new Swiper('.hero-swiper', {
             loop: true,
-            autoplay: { delay: 4000 },
-            pagination: { el: ".swiper-pagination", clickable: true },
+            effect: 'fade',
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
           });
 
-          const events = [
-            {
-              t: "Independence Day Celebration",
-              i: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=500",
-            },
-            {
-              t: "National Seminar on Science",
-              i: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500",
-            },
-            {
-              t: "Annual Sports Meet 2025",
-              i: "https://images.unsplash.com/photo-1526676023771-1be0044505f3?w=500",
-            },
-          ];
-          events.forEach((e) => {
-            document.getElementById(
-              "events-container"
-            ).innerHTML += `<div class="event-card"><img src="${e.i}"><p>${e.t}</p></div>`;
+          // ── Gallery ──
+          const galleryEl = document.getElementById('gallery-grid');
+          photos.forEach(p => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `<img src="${p}" alt="Campus" loading="lazy"><div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>`;
+            galleryEl.appendChild(item);
           });
-        } catch (e) {
-          console.error("Initialization failed:", e);
+
+        } catch (err) {
+          console.error('Initialization failed:', err);
         }
       }
+
       init();
     </script>
   </body>
