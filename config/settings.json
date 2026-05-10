@@ -24,17 +24,17 @@
       "name": "Governance",
       "url": "#",
       "children": [
-        { "name": "Governing Body", "url": "#" },
-        { "name": "Staff Council", "url": "#" },
-        { "name": "Staff Association", "url": "#" }
+        { "name": "Governing Body", "url": "content.html?id=governing-body" },
+        { "name": "Staff Council", "url": "content.html?id=staff-council" },
+        { "name": "Staff Association", "url": "content.html?id=staff-association" }
       ]
     },
     {
       "name": "Academics",
       "url": "#",
       "children": [
-        { "name": "Departments", "url": "#" },
-        { "name": "Academic Calendar", "url": "#" }
+        { "name": "Departments", "url": "content.html?id=departments" },
+        { "name": "Academic Calendar", "url": "content.html?id=academic-calendar" }
       ]
     },
     {
@@ -49,19 +49,19 @@
       "name": "IQAC",
       "url": "#",
       "children": [
-        { "name": "Objectives & Functions", "url": "#" },
-        { "name": "Composition", "url": "#" },
-        { "name": "Audit", "url": "#" },
-        { "name": "Reports", "url": "#" }
+        { "name": "Objectives & Functions", "url": "content.html?id=iqac-objectives" },
+        { "name": "Composition", "url": "content.html?id=iqac-composition" },
+        { "name": "Audit", "url": "content.html?id=iqac-audit" },
+        { "name": "Reports", "url": "content.html?id=iqac-reports" }
       ]
     },
     {
       "name": "Alumni",
-      "url": "#"
+      "url": "content.html?id=alumni"
     },
     {
       "name": "Events",
-      "url": "#"
+      "url": "content.html?id=events"
     },
     {
       "name": "Department",
